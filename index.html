@@ -5,175 +5,153 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>L’Italia s’è desta · Letteratura dell’Italia unita</title>
 <style>
-:root{
-  --bg:#14100d;--bg2:#271b14;--paper:#f1e8d4;--paper2:#e6d9bb;
-  --ink:#2a1f17;--soft:#6b5a49;--accent:#8c2f2a;--note:#3f6b62;
-  --rule:rgba(42,31,23,.22);--ctl:#e9dcc0;--ctlbg:rgba(241,232,212,.08);
-  --ctlline:rgba(241,232,212,.28);
-  box-sizing:border-box;color-scheme:dark
-}
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){--bg:#110d0a;--bg2:#21170f}
-}
+:root{--bg:#14100d;--bg2:#271b14;--paper:#f1e8d4;--paper2:#e6d9bb;--ink:#2a1f17;--soft:#6b5a49;--accent:#8c2f2a;--note:#3f6b62;--rule:rgba(42,31,23,.22);--ctl:#e9dcc0;--ctlbg:rgba(241,232,212,.08);--ctlline:rgba(241,232,212,.28);
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:dark}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#110d0a;--bg2:#21170f}}
 :root[data-theme="dark"]{--bg:#110d0a;--bg2:#21170f}
 *,*::before,*::after{box-sizing:inherit}
-html{-webkit-text-size-adjust:100%}
-body{
-  margin:0;min-height:100vh;min-height:100dvh;
-  background:radial-gradient(ellipse at 50% 25%,var(--bg2),var(--bg) 70%);
-  color:var(--ctl);
-  font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
-  overflow-x:hidden
-}
-.wrap{
-  max-width:1120px;margin:0 auto;
-  padding:calc(12px + env(safe-area-inset-top,0px)) 14px calc(22px + env(safe-area-inset-bottom,0px))
-}
-header{
-  display:flex;justify-content:space-between;align-items:center;gap:10px;
-  font:500 12px/1.3 system-ui,-apple-system,"Segoe UI",sans-serif;
-  letter-spacing:.03em;color:rgba(233,220,192,.72)
-}
+html{scroll-padding-top:env(safe-area-inset-top,0px);-webkit-text-size-adjust:100%}
+body{margin:0;min-height:100vh;min-height:100dvh;background:radial-gradient(ellipse at 50% 25%,var(--bg2),var(--bg) 70%);color:var(--ctl);font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;overflow-x:hidden}
+.sn{font-family:system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif}
+.wrap{max-width:1120px;margin:0 auto;padding:18px 16px 30px}
+header{display:flex;justify-content:space-between;align-items:center;gap:12px;font:500 12px/1.3 system-ui,-apple-system,"Segoe UI",sans-serif;letter-spacing:.04em;color:rgba(233,220,192,.7)}
 header b{color:var(--ctl);font-weight:600}
-#where{white-space:nowrap;font-variant-numeric:tabular-nums}
-
-.era{position:relative;height:32px;margin:6px 6px 12px}
-.era::before{content:"";position:absolute;left:0;right:0;top:19px;height:1px;background:var(--ctlline)}
-.era i{position:absolute;top:15px;font:normal 10px/1 system-ui,sans-serif;color:rgba(233,220,192,.45);transform:translateX(-50%);padding-top:9px}
+#where{white-space:nowrap}
+.era{position:relative;height:34px;margin:6px 4px 14px}
+.era::before{content:"";position:absolute;left:0;right:0;top:20px;height:1px;background:var(--ctlline)}
+.era i{position:absolute;top:16px;font:normal 10px/1 system-ui,sans-serif;color:rgba(233,220,192,.45);transform:translateX(-50%);padding-top:9px}
 .era i::before{content:"";position:absolute;top:-1px;left:50%;width:1px;height:6px;background:var(--ctlline)}
-.era u{position:absolute;top:12px;width:13px;height:13px;margin-left:-6.5px;border-radius:50%;background:var(--paper);box-shadow:0 0 0 4px rgba(241,232,212,.15),0 0 16px rgba(241,232,212,.5);transition:left .6s cubic-bezier(.3,.8,.2,1)}
-.era s{position:absolute;top:-2px;transform:translateX(-50%);font:600 12.5px/1 system-ui,sans-serif;text-decoration:none;color:var(--ctl);transition:left .6s cubic-bezier(.3,.8,.2,1)}
+.era u{position:absolute;top:13px;width:14px;height:14px;margin-left:-7px;border-radius:50%;background:var(--paper);box-shadow:0 0 0 4px rgba(241,232,212,.15),0 0 18px rgba(241,232,212,.5);transition:left .7s cubic-bezier(.3,.8,.2,1)}
+.era s{position:absolute;top:-2px;transform:translateX(-50%);font:600 13px/1 system-ui,sans-serif;text-decoration:none;color:var(--ctl);transition:left .7s cubic-bezier(.3,.8,.2,1)}
+.stage{perspective:2200px;position:relative;touch-action:pan-y}
+.stage::before{content:"";position:absolute;inset:-13px -14px -19px;z-index:-1;border-radius:10px;background:linear-gradient(135deg,#55321f,#2b1710 55%,#41261a);box-shadow:0 34px 60px rgba(0,0,0,.7),inset 0 0 0 5px #2b1710,inset 0 0 0 6px rgba(201,162,90,.5),inset 0 2px 6px rgba(255,255,255,.12)}
+.edge{position:absolute;top:5px;bottom:5px;background:repeating-linear-gradient(90deg,#e0d4b4 0 1px,#b5a680 1px 2px);transition:width .6s,left .6s,right .6s;box-shadow:inset 0 0 6px rgba(60,40,20,.5)}
+.el{border-radius:3px 0 0 3px}.er{border-radius:0 3px 3px 0}
+.snd{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:12px}
+.snd button{padding:7px 12px;font-size:12px}
 
-.stage{perspective:2000px;position:relative;touch-action:pan-y}
-.stage::before{
-  content:"";position:absolute;inset:-6px -6px -9px;z-index:-1;border-radius:9px;
-  background:linear-gradient(135deg,#55321f,#2b1710 55%,#41261a);
-  box-shadow:0 18px 34px rgba(0,0,0,.72),inset 0 0 0 3px #2b1710,inset 0 0 0 4px rgba(201,162,90,.48)
-}
-
-/* Modalità pagina singola su mobile: mostra una sola scheda alla volta */
-.book{
-  position:relative;display:block;min-height:0;border-radius:6px;
-  box-shadow:0 2px 0 #e3d7b9,0 4px 0 #c9bc98,0 0 0 1px rgba(0,0,0,.5);
-  background:var(--paper)
-}
-.page{
-  position:relative;padding:34px 20px 44px;color:var(--ink);
-  border-radius:6px;
-  background:linear-gradient(var(--paper),var(--paper2))
-}
-.page::before{
-  content:"";position:absolute;top:-7px;right:20px;width:15px;height:62px;
-  background:var(--accent);
-  clip-path:polygon(0 0,100% 0,100% 100%,50% 84%,0 100%);
-  filter:drop-shadow(0 2px 2px rgba(0,0,0,.38))
-}
-.fol{position:absolute;top:13px;left:20px;right:46px;font:500 11px/1.25 system-ui,-apple-system,"Segoe UI",sans-serif;letter-spacing:.04em;color:var(--soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.sig{position:absolute;bottom:14px;right:20px;font:italic 12.5px/1 Georgia,serif;color:var(--soft)}
-
-.kick{font:600 12px/1.3 system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--accent);margin:8px 0 6px;letter-spacing:.03em}
-h2{font-weight:400;margin:0 0 12px;line-height:1.1;letter-spacing:-.01em;font-size:clamp(26px,7.2vw,34px)}
-.lead{font-size:17px;line-height:1.58;margin:0 0 14px}
-.lead::first-letter{float:left;font-size:3em;line-height:.84;padding:3px 8px 0 0;color:var(--accent)}
-.chips{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 14px;padding:0;list-style:none}
-.chips li{font:500 12px/1 system-ui,-apple-system,"Segoe UI",sans-serif;padding:6px 11px;border:1px solid var(--rule);border-radius:99px}
-
-.key{margin:0 0 14px;padding:10px 13px;background:rgba(140,47,42,.07);border:1px dashed rgba(140,47,42,.45);border-radius:4px}
-.key b{display:block;font:600 12px/1.3 system-ui,sans-serif;color:var(--accent);margin-bottom:3px}
-.key span{font-size:15px;line-height:1.46;font-style:italic}
-
-.verse{margin:6px 0 14px;padding:6px 0 6px 14px;border-left:2px solid var(--accent);font-style:italic;font-size:18px;line-height:1.58}
+/* Layout normale a doppio foglio su PC / schermi grandi */
+.book{position:relative;display:grid;grid-template-columns:1fr 1fr;min-height:580px;border-radius:6px;box-shadow:0 2px 0 #e3d7b9,0 4px 0 #c9bc98,0 6px 0 #e3d7b9,0 8px 0 #bfb08a,0 0 0 1px rgba(0,0,0,.5);background:var(--paper)}
+.book::after{content:"";position:absolute;top:0;bottom:0;left:50%;width:46px;transform:translateX(-50%);pointer-events:none;background:linear-gradient(90deg,transparent,rgba(60,40,20,.22) 38%,rgba(40,25,10,.5) 50%,rgba(60,40,20,.22) 62%,transparent)}
+.page{position:relative;padding:36px 38px 56px;color:var(--ink);backface-visibility:hidden}
+.page.l{border-radius:6px 0 0 6px;transform-origin:100% 50%;background:linear-gradient(270deg,rgba(70,45,20,.2),transparent 14%),linear-gradient(var(--paper),var(--paper2))}
+.page.r{border-radius:0 6px 6px 0;transform-origin:0 50%;background:linear-gradient(90deg,rgba(70,45,20,.2),transparent 14%),linear-gradient(var(--paper),var(--paper2))}
+.page.r::before{content:"";position:absolute;top:-8px;right:46px;width:17px;height:78px;background:var(--accent);clip-path:polygon(0 0,100% 0,100% 100%,50% 84%,0 100%);filter:drop-shadow(0 3px 2px rgba(0,0,0,.4))}
+.sig{position:absolute;bottom:18px;font:italic 13.5px/1 Georgia,serif;color:var(--soft)}
+.l .sig{left:38px}.r .sig{right:38px}
+.fol{position:absolute;top:15px;font:500 11.5px/1 system-ui,-apple-system,"Segoe UI",sans-serif;letter-spacing:.05em;color:var(--soft)}
+.l .fol{left:38px}.r .fol{right:100px}
+.kick{font:600 12.5px/1.3 system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--accent);margin:12px 0 6px;letter-spacing:.03em}
+h2{font-weight:400;margin:0 0 14px;line-height:1.08;letter-spacing:-.01em;font-size:clamp(30px,3.8vw,45px)}
+.lead{font-size:18.5px;line-height:1.62;margin:0 0 16px}
+.lead::first-letter{float:left;font-size:3.4em;line-height:.82;padding:4px 8px 0 0;color:var(--accent)}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 18px;padding:0;list-style:none}
+.chips li{font:500 12.5px/1 system-ui,-apple-system,"Segoe UI",sans-serif;padding:7px 12px;border:1px solid var(--rule);border-radius:99px;transition:background .2s,color .2s}
+.chips li:hover{background:var(--ink);color:var(--paper)}
+.key{margin:0 0 16px;padding:11px 15px 12px;background:rgba(140,47,42,.07);border:1px dashed rgba(140,47,42,.45);transform:rotate(-.8deg);transition:transform .3s}
+.key:hover{transform:rotate(0)}
+.key b{display:block;font:600 12.5px/1.3 system-ui,sans-serif;color:var(--accent);margin-bottom:3px}
+.key span{font-size:15.5px;line-height:1.48;font-style:italic}
+.verse{margin:8px 0 0;padding:7px 0 7px 18px;border-left:2px solid var(--accent);font-style:italic;font-size:20.5px;line-height:1.7;transition:padding-left .25s,background .25s}
+.verse:hover{padding-left:26px;background:linear-gradient(90deg,rgba(140,47,42,.08),transparent)}
 .verse .ln{display:block}
-.verse cite{display:block;margin-top:5px;font:500 12px/1.3 system-ui,sans-serif;font-style:normal;color:var(--soft)}
-
+.verse cite{display:block;margin-top:6px;font:500 12.5px/1.3 system-ui,sans-serif;font-style:normal;color:var(--soft)}
+.tl{list-style:none;margin:6px 0 0;padding:0 0 0 18px;border-left:1.5px solid var(--accent)}
+.tl li{position:relative;margin:0 0 12px;font-size:16px;line-height:1.48;transition:transform .25s}
+.tl li:hover{transform:translateX(5px)}
+.tl li::before{content:"";position:absolute;left:-24px;top:7px;width:9px;height:9px;border-radius:50%;background:var(--paper);border:2px solid var(--accent)}
+.tl b{display:block;font:600 12.5px/1.4 system-ui,sans-serif;color:var(--accent)}
+.vs{display:grid;gap:12px;margin-top:6px}
+.vs>div,.cd,.note{padding:12px 15px;border-left:3px solid var(--note);background:rgba(63,107,98,.09);border-radius:0 4px 4px 0;transition:transform .25s,box-shadow .25s}
+.vs>div:last-of-type{border-left-color:var(--accent);background:rgba(140,47,42,.07)}
+.vs>div:hover,.cd:hover,.note:hover{transform:translateX(5px);box-shadow:0 6px 16px rgba(42,31,23,.16)}
+.cg{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}
+.cd:hover{transform:translateY(-3px)}
+h3{margin:0 0 4px;font:600 13.5px/1.3 system-ui,sans-serif;color:var(--note);letter-spacing:.02em}
+.vs>div:last-of-type h3{color:var(--accent)}
+p{margin:0}.vs p,.cd p,.note p{font-size:15.5px;line-height:1.52}
+.big{font-size:clamp(46px,6.2vw,66px);line-height:1;color:var(--accent);margin:6px 0 4px}
+.cap{font-size:16px;line-height:1.52;margin-bottom:14px}
+.note{margin-top:12px}
 .sep{margin:16px 0 14px;padding-top:14px;border-top:1px dashed var(--rule)}
 .sec-h{margin:0 0 10px;font:700 12px/1.3 system-ui,-apple-system,"Segoe UI",sans-serif;text-transform:uppercase;letter-spacing:.05em;color:var(--accent)}
 
-.tl{list-style:none;margin:4px 0 0;padding:0 0 0 16px;border-left:1.5px solid var(--accent)}
-.tl li{position:relative;margin:0 0 10px;font-size:15.2px;line-height:1.46}
-.tl li:last-child{margin-bottom:0}
-.tl li::before{content:"";position:absolute;left:-21px;top:6px;width:8px;height:8px;border-radius:50%;background:var(--paper);border:2px solid var(--accent)}
-.tl b{display:block;font:600 12px/1.35 system-ui,sans-serif;color:var(--accent)}
+.page.airy .lead{font-size:20px;line-height:1.68;margin-bottom:20px}
+.page.airy .key span{font-size:17px;line-height:1.52}
+.page.airy .verse{font-size:22px;line-height:1.75}
+.page.airy .vs p,.page.airy .cd p,.page.airy .note p{font-size:16.8px;line-height:1.58}
+.page.airy .tl li{font-size:17.2px;line-height:1.54;margin-bottom:14px}
+.page.airy .cap{font-size:17.5px;line-height:1.58}
 
-.vs{display:grid;gap:10px;margin-top:4px}
-.vs>div,.cd,.note{
-  padding:10px 13px;border-left:3px solid var(--note);
-  background:rgba(63,107,98,.09);border-radius:0 4px 4px 0
-}
-.vs>div:last-of-type{border-left-color:var(--accent);background:rgba(140,47,42,.07)}
-.cg{display:grid;grid-template-columns:1fr;gap:8px;margin-top:4px}
-h3{margin:0 0 3px;font:600 13px/1.3 system-ui,sans-serif;color:var(--note);letter-spacing:.02em}
-.vs>div:last-of-type h3{color:var(--accent)}
-p{margin:0}.vs p,.cd p,.note p{font-size:15px;line-height:1.48}
-.big{font-size:clamp(38px,11vw,52px);line-height:1;color:var(--accent);margin:4px 0 6px}
-.cap{font-size:15.5px;line-height:1.5;margin-bottom:12px}
-.note{margin-top:10px}
-
-.ink{opacity:0;animation:ink .55s cubic-bezier(.2,.7,.2,1) forwards;animation-delay:calc(var(--i,0)*45ms + 80ms)}
-@keyframes ink{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-
-nav{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
-button{
-  font:500 13px/1 system-ui,-apple-system,"Segoe UI",sans-serif;
-  color:var(--ctl);background:var(--ctlbg);border:1px solid var(--ctlline);
-  border-radius:99px;padding:11px 14px;cursor:pointer;
-  transition:background .2s,transform .18s;-webkit-tap-highlight-color:transparent
-}
+.ink{opacity:0;animation:ink .8s cubic-bezier(.2,.7,.2,1) forwards;animation-delay:calc(var(--i,0)*85ms + 160ms)}
+@keyframes ink{from{opacity:0;filter:blur(5px);transform:translateY(8px)}to{opacity:1;filter:blur(0);transform:none}}
+nav{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;align-items:center;margin-top:20px}
+button{font:500 13px/1 system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ctl);background:var(--ctlbg);border:1px solid var(--ctlline);border-radius:99px;padding:11px 18px;cursor:pointer;transition:background .2s,transform .2s;-webkit-tap-highlight-color:transparent}
 button:hover:not(:disabled){background:rgba(241,232,212,.18)}
 button:active:not(:disabled){transform:scale(.97)}
 button:disabled{opacity:.35;cursor:default}
 button:focus-visible{outline:2px solid var(--ctl);outline-offset:2px}
-#prev{grid-column:1;grid-row:1;width:100%}
-#next{grid-column:2;grid-row:1;width:100%}
+.pills{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;max-width:760px}
+.pills button{padding:7px 11px;font-size:12px;border-top:3px solid var(--c)}
+.pills button[aria-current="true"]{background:var(--paper);color:var(--ink)}
+.hint{text-align:center;font:12px/1.4 system-ui,sans-serif;color:rgba(233,220,192,.5);margin-top:12px}
 
-.pills{
-  grid-column:1 / -1;grid-row:2;
-  display:flex;flex-wrap:nowrap;justify-content:flex-start;
-  overflow-x:auto;max-width:100%;padding:4px 2px 6px;gap:6px;
-  -webkit-overflow-scrolling:touch;scrollbar-width:none;scroll-behavior:smooth
+/* Solo su telefono: pagina singola unificata e controlli touch */
+@media (max-width:760px){
+  .wrap{padding:12px 14px 24px}
+  header{font-size:11.5px;gap:8px}
+  .era{margin:6px 6px 12px}
+  .stage::before{inset:-6px -6px -9px;border-radius:9px;box-shadow:0 18px 34px rgba(0,0,0,.72),inset 0 0 0 3px #2b1710,inset 0 0 0 4px rgba(201,162,90,.48)}
+  .edge,.book::after{display:none}
+  .book{display:block;min-height:0;box-shadow:0 2px 0 #e3d7b9,0 4px 0 #c9bc98,0 0 0 1px rgba(0,0,0,.5)}
+  .page.m-single{
+    border-radius:6px;transform-origin:50% 0;
+    padding:34px 20px 44px;
+    background:linear-gradient(var(--paper),var(--paper2))
+  }
+  .page.m-single::before{
+    content:"";position:absolute;top:-7px;right:20px;width:15px;height:62px;
+    background:var(--accent);clip-path:polygon(0 0,100% 0,100% 100%,50% 84%,0 100%);
+    filter:drop-shadow(0 2px 2px rgba(0,0,0,.38))
+  }
+  .page.m-single .fol{top:13px;left:20px;right:46px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .page.m-single .sig{bottom:14px;right:20px;left:auto}
+  .cg{grid-template-columns:1fr}
+  h2{font-size:clamp(26px,7.2vw,34px)}
+  .lead,.page.airy .lead{font-size:17px;line-height:1.58;margin-bottom:14px}
+  .key{transform:none;border-radius:4px}
+  .key span,.page.airy .key span{font-size:15px;line-height:1.46}
+  .verse,.page.airy .verse{font-size:18px;line-height:1.58;padding-left:14px;margin-bottom:14px}
+  .verse:hover{padding-left:14px}
+  .vs p,.cd p,.note p,.page.airy .vs p,.page.airy .cd p,.page.airy .note p{font-size:15px;line-height:1.48}
+  .tl li,.page.airy .tl li{font-size:15.2px;line-height:1.46;margin-bottom:10px}
+
+  nav{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
+  #prev{grid-column:1;grid-row:1;width:100%}
+  #next{grid-column:2;grid-row:1;width:100%}
+  .pills{grid-column:1 / -1;grid-row:2;display:flex;flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;max-width:100%;padding:4px 2px 6px;gap:6px;-webkit-overflow-scrolling:touch;scrollbar-width:none;scroll-behavior:smooth}
+  .pills::-webkit-scrollbar{display:none}
+  .pills button{flex:0 0 auto;padding:8px 12px;font-size:12px}
 }
-.pills::-webkit-scrollbar{display:none}
-.pills button{flex:0 0 auto;padding:8px 12px;font-size:12px;border-top:3px solid var(--c)}
-.pills button[aria-current="true"]{background:var(--paper);color:var(--ink);font-weight:600}
-
-.hint{text-align:center;font:11.5px/1.35 system-ui,sans-serif;color:rgba(233,220,192,.55);margin:10px 0 0}
-.snd{display:flex;justify-content:center;margin-top:10px}
-.snd button{padding:8px 14px;font-size:12px}
-
-@media (prefers-reduced-motion:reduce){
-  .ink{animation:none;opacity:1}
-  .era u,.era s{transition:none}
-}
+@media (prefers-reduced-motion:reduce){.ink{animation:none;opacity:1}.era u,.era s{transition:none}}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <header>
-    <span><b>L’Italia s’è desta</b> · mobile</span>
-    <span id="where"></span>
-  </header>
-  <div class="era" id="era"></div>
-  <div class="stage" id="stage">
-    <div class="book" id="book">
-      <section class="page" id="page"></section>
-    </div>
-  </div>
-  <nav aria-label="Navigazione tra le carte">
-    <button id="prev">← Prec.</button>
-    <button id="next">Succ. →</button>
-    <div class="pills" id="pills"></div>
-  </nav>
-  <p class="hint">Swipe orizzontale o frecce ← → per cambiare pagina</p>
-  <div class="snd"><button id="mute" aria-pressed="false">Suono: attivo</button></div>
+<header><span><b>L’Italia s’è desta</b> · letteratura e cultura dell’Italia unita</span><span id="where"></span></header>
+<div class="era" id="era"></div>
+<div class="stage" id="stage"><i class="edge el" id="el"></i><i class="edge er" id="er"></i><div class="book" id="book"><section class="page l" id="pl"></section><section class="page r" id="pr"></section></div></div>
+<nav aria-label="Navigazione tra le carte"><button id="prev">← Pagina prec.</button><div class="pills" id="pills"></div><button id="next">Pagina succ. →</button></nav>
+<p class="hint" id="hint">Frecce ← → per sfogliare · la lanterna scorre lungo la linea del tempo</p>
+<div class="snd"><button id="mute" aria-pressed="false">Suono: attivo</button></div>
 </div>
-
 <script>
 const COL=["#8c2f2a","#b07a2a","#3f6b62","#5a4a8a","#a14a7a","#2f5f8c","#7a7a2f"];
 const C=[
 {p:"Frontespizio",g:0,y:1861,k:"Italia postunitaria · 1860–fine Ottocento",t:"L’Italia s’è desta",
  l:"Non una corrente letteraria, ma una fase storico-politica: la costruzione del nuovo Stato. Fatta l’Italia, bisogna far sentire gli abitanti parte di una stessa nazione, e scuola, stampa, cultura e scrittori sono chiamati all’impresa.",
  c:["Identità nazionale","Divario tra regioni","Scuola e stampa"],key:["Postunitario","Periodo definito più dalla storia italiana che da una poetica."],
- r:{h:"Apparato critico",t:"notes",i:[["In Europa","Le trasformazioni partono dal 1848-49; in Italia arrivano più lente e diseguali."],["Compito degli scrittori","Diffondere tradizioni, valori e un’immagine condivisa del Paese."],["Come leggere","Ogni pagina riunisce tema, concetti chiave, citazioni e approfondimento."]]}},
+ r:{h:"Apparato critico",t:"notes",i:[["In Europa","Le trasformazioni partono dal 1848-49; in Italia arrivano più lente e diseguali."],["Compito degli scrittori","Diffondere tradizioni, valori e un’immagine condivisa del Paese."],["Come leggere","A sinistra il tema e i concetti; a destra cronologie, confronti e schede."]]}},
 {p:"Fare l’Italia",g:0,y:1861,k:"La difficile conquista dell’Unità",t:"Un’unità per tappe",
  l:"Dall’alleanza con Napoleone III alla presa di Roma, il Regno si compone a più riprese: restano fuori il Veneto, Roma e il Sud borbonico.",
  c:["Plebisciti","I Mille","Roma capitale"],key:["I Mille","Garibaldi, pur repubblicano, consegna i territori conquistati a Vittorio Emanuele II."],
@@ -231,41 +209,74 @@ const C=[
  r:{h:"Due mondi",t:"vs",a:["Salgari","Verona, 1862. Le Tigri di Mompracem, I misteri della Jungla Nera: suspense e colpi di scena dal romanzo d’appendice, sentimenti teatrali dal melodramma."],b:["Fogazzaro","Vicenza, 1842-1911. Malombra, Piccolo mondo antico, Il Santo: cattolicesimo liberale vicino al Modernismo, ville e laghi veneti, memoria e nostalgia."],n:"Da un lato l’avventura lontana, dall’altro il «piccolo mondo» degli affetti."}}
 ];
 
-const Y0=1848,Y1=1911,$=id=>document.getElementById(id),page=$("page"),book=$("book");
+const Y0=1848,Y1=1911,$=id=>document.getElementById(id),book=$("book"),pl=$("pl"),pr=$("pr");
 let cur=0,busy=false;
 const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+const mobileMq=matchMedia("(max-width:760px)");
+const isPhone=()=>mobileMq.matches;
 const pos=y=>((y-Y0)/(Y1-Y0)*100).toFixed(1)+"%";
 
 $("era").innerHTML=[1860,1870,1880,1890,1900,1910].map(y=>`<i style="left:${pos(y)}">${y}</i>`).join("")+`<u id="lan"></u><s id="lab"></s>`;
 
-function detailSection(r,d){
-  let b="";
-  if(r.t==="tl")b=`<ol class="tl">${r.i.map(x=>`<li class="ink" ${d()}><b>${x[0]}</b>${x[1]}</li>`).join("")}</ol>`;
-  else if(r.t==="vs")b=`<div class="vs">${[r.a,r.b].map(x=>`<div class="ink" ${d()}><h3>${x[0]}</h3><p>${x[1]}</p></div>`).join("")}</div><div class="note ink" ${d()}><p>${r.n}</p></div>`;
-  else if(r.t==="cards")b=`<div class="cg">${r.i.map(x=>`<div class="cd ink" ${d()}><h3>${x[0]}</h3><p>${x[1]}</p></div>`).join("")}</div>`;
-  else{
-    const n=r.i.map(x=>`<div class="note ink" ${d()}><h3>${x[0]}</h3><p>${x[1]}</p></div>`).join("");
-    b=r.t==="stat"?`<div class="big ink" ${d()}>${r.b}</div><p class="cap ink" ${d()}>${r.d}</p>${n}`:n;
-  }
-  return `<div class="sep"><div class="sec-h ink" ${d()}>${r.h}</div>${b}</div>`;
+function rightBody(r,d){
+  if(r.t==="tl")return `<ol class="tl">${r.i.map(x=>`<li class="ink" ${d()}><b>${x[0]}</b>${x[1]}</li>`).join("")}</ol>`;
+  if(r.t==="vs")return `<div class="vs">${[r.a,r.b].map(x=>`<div class="ink" ${d()}><h3>${x[0]}</h3><p>${x[1]}</p></div>`).join("")}</div><div class="note ink" ${d()}><p>${r.n}</p></div>`;
+  if(r.t==="cards")return `<div class="cg">${r.i.map(x=>`<div class="cd ink" ${d()}><h3>${x[0]}</h3><p>${x[1]}</p></div>`).join("")}</div>`;
+  const n=r.i.map(x=>`<div class="note ink" ${d()}><h3>${x[0]}</h3><p>${x[1]}</p></div>`).join("");
+  return r.t==="stat"?`<div class="big ink" ${d()}>${r.b}</div><p class="cap ink" ${d()}>${r.d}</p>${n}`:n;
 }
 
-function renderCard(i){
+function right(c,d){
+  const r=c.r;
+  return `<span class="fol">${r.h}</span><div class="kick ink" ${d()}>${r.h}</div>${rightBody(r,d)}`;
+}
+
+function html(i){
   const c=C[i];let k=0;const d=()=>`style="--i:${k++}"`;
-  return `
-    <span class="fol">${c.p}</span>
-    <div class="kick ink" ${d()}>${c.k}</div>
-    <h2 class="ink" ${d()}>${c.t}</h2>
-    <p class="lead ink" ${d()}>${c.l}</p>
-    <ul class="chips">${c.c.map(x=>`<li class="ink" ${d()}>${x}</li>`).join("")}</ul>
-    <div class="key ink" ${d()}><b>${c.key[0]}</b><span>${c.key[1]}</span></div>
-    ${c.v?`<blockquote class="verse">${c.v.map(v=>`<span class="ln ink" ${d()}>${v}</span>`).join("")}<cite class="ink" ${d()}>${c.s}</cite></blockquote>`:""}
-    ${detailSection(c.r,d)}
-    <span class="sig">p. ${i+1}/${C.length}</span>
-  `;
+  const L=`<span class="fol">${c.p}</span><div class="kick ink" ${d()}>${c.k}</div><h2 class="ink" ${d()}>${c.t}</h2>
+  <p class="lead ink" ${d()}>${c.l}</p><ul class="chips">${c.c.map(x=>`<li class="ink" ${d()}>${x}</li>`).join("")}</ul>
+  <div class="key ink" ${d()}><b>${c.key[0]}</b><span>${c.key[1]}</span></div>
+  ${c.v?`<blockquote class="verse">${c.v.map(v=>`<span class="ln ink" ${d()}>${v}</span>`).join("")}<cite class="ink" ${d()}>${c.s}</cite></blockquote>`:""}
+  <span class="sig">c. ${i+1}r</span>`;
+  return [L,right(c,d)+`<span class="sig">c. ${i+1}v</span>`];
+}
+
+function htmlSingle(i){
+  const c=C[i];let k=0;const d=()=>`style="--i:${k++}"`;
+  return `<span class="fol">${c.p}</span><div class="kick ink" ${d()}>${c.k}</div><h2 class="ink" ${d()}>${c.t}</h2>
+  <p class="lead ink" ${d()}>${c.l}</p><ul class="chips">${c.c.map(x=>`<li class="ink" ${d()}>${x}</li>`).join("")}</ul>
+  <div class="key ink" ${d()}><b>${c.key[0]}</b><span>${c.key[1]}</span></div>
+  ${c.v?`<blockquote class="verse">${c.v.map(v=>`<span class="ln ink" ${d()}>${v}</span>`).join("")}<cite class="ink" ${d()}>${c.s}</cite></blockquote>`:""}
+  <div class="sep"><div class="sec-h ink" ${d()}>${c.r.h}</div>${rightBody(c.r,d)}</div>
+  <span class="sig">p. ${i+1}/${C.length}</span>`;
+}
+
+function syncSlots(){
+  const phone=isPhone();
+  if(phone){
+    pl.className="page m-single";
+    pr.style.display="none";
+    $("hint").textContent="Frecce ← → o swipe per sfogliare · la lanterna scorre lungo la linea del tempo";
+  }else{
+    pl.className="page l";
+    pr.className="page r";
+    pr.style.display="";
+    $("hint").textContent="Frecce ← → per sfogliare · la lanterna scorre lungo la linea del tempo";
+  }
+}
+
+function setAiry(i){
+  const c=C[i];
+  const leftLen=c.l.length+c.key[1].length+(c.v?c.v.join(" ").length:0);
+  const rightLen=c.r.t==="tl"?c.r.i.reduce((s,x)=>s+x[1].length,0):
+   c.r.t==="vs"?c.r.a[1].length+c.r.b[1].length+(c.r.n?c.r.n.length:0):
+   c.r.i.reduce((s,x)=>s+x[1].length,0);
+  pl.classList.toggle("airy",leftLen<310);
+  pr.classList.toggle("airy",rightLen<320);
 }
 
 function centerPill(i){
+  if(!isPhone())return;
   const pills=$("pills"),btn=pills.querySelectorAll("button")[i];
   if(!btn||pills.scrollWidth<=pills.clientWidth)return;
   const left=btn.offsetLeft-(pills.clientWidth-btn.offsetWidth)/2;
@@ -273,11 +284,20 @@ function centerPill(i){
 }
 
 function paint(i){
-  page.innerHTML=renderCard(i);
+  syncSlots();
+  if(isPhone()){
+    pl.innerHTML=htmlSingle(i);
+  }else{
+    const [a,b]=html(i);
+    pl.innerHTML=a;
+    pr.innerHTML=b;
+  }
+  setAiry(i);
   cur=i;
-  $("where").textContent=`${i+1} / ${C.length}`;
+  $("where").textContent=`Carta ${i+1} di ${C.length}`;
   $("lan").style.left=$("lab").style.left=pos(C[i].y);
   $("lab").textContent=C[i].y;
+  edges(i);
   $("prev").disabled=i===0;
   $("next").disabled=i===C.length-1;
   document.querySelectorAll(".pills button").forEach((el,j)=>el.setAttribute("aria-current",j===i));
@@ -288,75 +308,79 @@ function paint(i){
 async function go(i){
   if(busy||i<0||i>=C.length||i===cur)return;
   const dir=i>cur?"next":"prev",f=dir==="next";
-  if(reduce||!book.animate){sfx(dir);paint(i);return}
+  if(reduce||!pl.animate){sfx(dir);paint(i);return}
   busy=true;sfx(dir);
-  await book.animate([
-    {transform:"translateX(0)",opacity:1},
-    {transform:`translateX(${f?-22:22}px)`,opacity:.12}
-  ],{duration:200,easing:"ease-in",fill:"forwards"}).finished;
-  paint(i);
-  if(window.scrollY>book.offsetTop){
-    window.scrollTo({top:Math.max(0,book.offsetTop-10),behavior:"smooth"});
+  if(isPhone()){
+    await book.animate([
+      {transform:"translateX(0)",opacity:1},
+      {transform:`translateX(${f?-22:22}px)`,opacity:.15}
+    ],{duration:210,easing:"ease-in",fill:"forwards"}).finished;
+    paint(i);
+    if(window.scrollY>book.offsetTop){
+      window.scrollTo({top:Math.max(0,book.offsetTop-12),behavior:"smooth"});
+    }
+    await book.animate([
+      {transform:`translateX(${f?22:-22}px)`,opacity:.15},
+      {transform:"translateX(0)",opacity:1}
+    ],{duration:240,easing:"ease-out"}).finished;
+    book.getAnimations().forEach(a=>a.cancel());
+  }else{
+    const out=f?pr:pl;
+    await out.animate([
+      {transform:"rotateY(0)",opacity:1,filter:"brightness(1)"},
+      {transform:`rotateY(${f?-78:78}deg)`,opacity:.15,filter:"brightness(.7)"}
+    ],{duration:340,easing:"ease-in",fill:"forwards"}).finished;
+    paint(i);
+    (f?pl:pr).animate([
+      {transform:`rotateY(${f?72:-72}deg)`,opacity:.2},
+      {transform:"rotateY(0)",opacity:1}
+    ],{duration:360,easing:"ease-out"});
+    out.getAnimations().forEach(a=>a.cancel());
   }
-  await book.animate([
-    {transform:`translateX(${f?22:-22}px)`,opacity:.12},
-    {transform:"translateX(0)",opacity:1}
-  ],{duration:240,easing:"ease-out"}).finished;
-  book.getAnimations().forEach(a=>a.cancel());
   busy=false;
 }
 
 /* Suoni: avanti = browse.ogg, indietro = browse2.ogg */
 const SOUNDS={next:"browse.ogg",prev:"browse2.ogg"};
 let AC,muted=false,clips={
-  next:SOUNDS.next?new Audio(SOUNDS.next):null,
-  prev:SOUNDS.prev?new Audio(SOUNDS.prev):null
+ next:SOUNDS.next?new Audio(SOUNDS.next):null,
+ prev:SOUNDS.prev?new Audio(SOUNDS.prev):null
 };
+function edges(i){const n=C.length-1,l=2+9*i/n,r=2+9*(n-i)/n;
+ $("el").style.width=l+"px";$("el").style.left=-l+"px";$("er").style.width=r+"px";$("er").style.right=-r+"px"}
+function sfx(dir="next"){if(muted)return;
+ const base=clips[dir]||clips.next;
+ if(base){const a=base.cloneNode();a.playbackRate=.94+Math.random()*.12;a.play().catch(()=>{});return}
+ try{AC=AC||new (window.AudioContext||window.webkitAudioContext)();const t=AC.currentTime,n=AC.sampleRate*.45|0,b=AC.createBuffer(1,n,AC.sampleRate),d=b.getChannelData(0);
+ for(let k=0;k<n;k++)d[k]=(Math.random()*2-1)*Math.pow(1-k/n,2.2)*(.6+.4*Math.sin(k/180));
+ const s=AC.createBufferSource();s.buffer=b;const f=AC.createBiquadFilter();f.type="bandpass";f.Q.value=.8;f.frequency.setValueAtTime(900,t);f.frequency.exponentialRampToValueAtTime(4200,t+.35);
+ const g=AC.createGain();g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.5,t+.05);g.gain.exponentialRampToValueAtTime(.0001,t+.42);
+ s.connect(f);f.connect(g);g.connect(AC.destination);s.start(t);
+ const o=AC.createOscillator(),og=AC.createGain();o.frequency.setValueAtTime(110,t+.3);o.frequency.exponentialRampToValueAtTime(55,t+.45);
+ og.gain.setValueAtTime(.0001,t+.3);og.gain.exponentialRampToValueAtTime(.25,t+.32);og.gain.exponentialRampToValueAtTime(.0001,t+.5);o.connect(og);og.connect(AC.destination);o.start(t+.3);o.stop(t+.52)}catch(e){}}
 
-function sfx(dir="next"){
-  if(muted)return;
-  const base=clips[dir]||clips.next;
-  if(base){const a=base.cloneNode();a.playbackRate=.94+Math.random()*.12;a.play().catch(()=>{});return}
-  try{
-    AC=AC||new (window.AudioContext||window.webkitAudioContext)();
-    const t=AC.currentTime,n=AC.sampleRate*.45|0,b=AC.createBuffer(1,n,AC.sampleRate),d=b.getChannelData(0);
-    for(let k=0;k<n;k++)d[k]=(Math.random()*2-1)*Math.pow(1-k/n,2.2)*(.6+.4*Math.sin(k/180));
-    const s=AC.createBufferSource();s.buffer=b;
-    const f=AC.createBiquadFilter();f.type="bandpass";f.Q.value=.8;
-    f.frequency.setValueAtTime(900,t);f.frequency.exponentialRampToValueAtTime(4200,t+.35);
-    const g=AC.createGain();g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.5,t+.05);g.gain.exponentialRampToValueAtTime(.0001,t+.42);
-    s.connect(f);f.connect(g);g.connect(AC.destination);s.start(t);
-    const o=AC.createOscillator(),og=AC.createGain();
-    o.frequency.setValueAtTime(110,t+.3);o.frequency.exponentialRampToValueAtTime(55,t+.45);
-    og.gain.setValueAtTime(.0001,t+.3);og.gain.exponentialRampToValueAtTime(.25,t+.32);og.gain.exponentialRampToValueAtTime(.0001,t+.5);
-    o.connect(og);og.connect(AC.destination);o.start(t+.3);o.stop(t+.52);
-  }catch(e){}
-}
-
-$("mute").onclick=e=>{
-  muted=!muted;
-  e.target.textContent=muted?"Suono: spento":"Suono: attivo";
-  e.target.setAttribute("aria-pressed",muted);
-};
-$("prev").onclick=()=>go(cur-1);
-$("next").onclick=()=>go(cur+1);
+$("mute").onclick=e=>{muted=!muted;e.target.textContent=muted?"Suono: spento":"Suono: attivo";e.target.setAttribute("aria-pressed",muted)};
+$("prev").onclick=()=>go(cur-1);$("next").onclick=()=>go(cur+1);
 $("pills").innerHTML=C.map((c,i)=>`<button data-i="${i}" style="--c:${COL[c.g]}" title="${c.t}">${i+1}. ${c.p}</button>`).join("");
 $("pills").onclick=e=>{const b=e.target.closest("button");if(b)go(+b.dataset.i)};
 addEventListener("keydown",e=>{if(e.key==="ArrowRight")go(cur+1);else if(e.key==="ArrowLeft")go(cur-1)});
 
+/* Gesture swipe orizzontale solo su telefono */
 let tx=0,ty=0;
 $("stage").addEventListener("touchstart",e=>{
-  if(e.touches.length===1){tx=e.touches[0].clientX;ty=e.touches[0].clientY}
+  if(!isPhone()||e.touches.length!==1)return;
+  tx=e.touches[0].clientX;ty=e.touches[0].clientY;
 },{passive:true});
 $("stage").addEventListener("touchend",e=>{
-  if(!tx||e.changedTouches.length!==1)return;
+  if(!isPhone()||!tx||e.changedTouches.length!==1)return;
   const dx=e.changedTouches[0].clientX-tx,dy=e.changedTouches[0].clientY-ty;
   tx=0;ty=0;
   if(Math.abs(dx)>52&&Math.abs(dx)>Math.abs(dy)*1.4){go(dx<0?cur+1:cur-1)}
 },{passive:true});
 
-const m=/^#c(\d+)$/.exec(location.hash);
-paint(m&&C[m[1]-1]?m[1]-1:0);
+mobileMq.addEventListener("change",()=>paint(cur));
+
+const m=/^#c(\d+)$/.exec(location.hash);paint(m&&C[m[1]-1]?m[1]-1:0);
 </script>
 </body>
 </html>
