@@ -6,23 +6,54 @@
 <title>L’Italia s’è desta · Letteratura dell’Italia unita</title>
 <style>
 :root{--bg:#14100d;--bg2:#271b14;--paper:#f1e8d4;--paper2:#e6d9bb;--ink:#2a1f17;--soft:#6b5a49;--accent:#8c2f2a;--note:#3f6b62;--rule:rgba(42,31,23,.22);--ctl:#e9dcc0;--ctlbg:rgba(241,232,212,.08);--ctlline:rgba(241,232,212,.28);
+--sb-track:#23140d;--sb-thumb:#decfa9;--sb-thumb2:#c2ae83;--sb-border:#4b2c1b;--sb-hover:#f1e8d4;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:dark}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#110d0a;--bg2:#21170f}}
 :root[data-theme="dark"]{--bg:#110d0a;--bg2:#21170f}
 *,*::before,*::after{box-sizing:inherit}
-html{scroll-padding-top:env(safe-area-inset-top,0px);-webkit-text-size-adjust:100%}
+html{
+  scroll-padding-top:env(safe-area-inset-top,0px);
+  -webkit-text-size-adjust:100%;
+  scrollbar-width:thin;
+  scrollbar-color:var(--sb-thumb) var(--sb-track)
+}
 body{margin:0;min-height:100vh;min-height:100dvh;background:radial-gradient(ellipse at 50% 25%,var(--bg2),var(--bg) 70%);color:var(--ctl);font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;overflow-x:hidden}
+
+/* Scrollbar laterale a tema carta e toni marroni */
+::-webkit-scrollbar{width:12px;height:12px}
+::-webkit-scrollbar-track{
+  background:linear-gradient(180deg,#1d100a,var(--sb-track) 50%,#190e09);
+  border-left:1px solid rgba(201,162,90,.2)
+}
+::-webkit-scrollbar-thumb{
+  background:linear-gradient(180deg,var(--sb-thumb),var(--sb-thumb2));
+  border-radius:999px;
+  border:2px solid var(--sb-track);
+  box-shadow:inset 0 0 0 1px rgba(75,44,27,.45)
+}
+::-webkit-scrollbar-thumb:hover{
+  background:linear-gradient(180deg,var(--sb-hover),var(--sb-thumb))
+}
+::-webkit-scrollbar-thumb:active{
+  background:linear-gradient(180deg,#e6d9bb,#b89f6e)
+}
+::-webkit-scrollbar-corner{background:var(--sb-track)}
+
 .sn{font-family:system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif}
 .wrap{max-width:1120px;margin:0 auto;padding:18px 16px 30px}
 header{display:flex;justify-content:space-between;align-items:center;gap:12px;font:500 12px/1.3 system-ui,-apple-system,"Segoe UI",sans-serif;letter-spacing:.04em;color:rgba(233,220,192,.7)}
 header b{color:var(--ctl);font-weight:600}
 #where{white-space:nowrap}
-.era{position:relative;height:34px;margin:6px 4px 14px}
+
+.era{position:relative;height:34px;margin:6px 4px 14px;user-select:none}
 .era::before{content:"";position:absolute;left:0;right:0;top:20px;height:1px;background:var(--ctlline)}
-.era i{position:absolute;top:16px;font:normal 10px/1 system-ui,sans-serif;color:rgba(233,220,192,.45);transform:translateX(-50%);padding-top:9px}
+.era i{position:absolute;top:16px;font:normal 10px/1 system-ui,sans-serif;color:rgba(233,220,192,.45);transform:translateX(-50%);padding-top:9px;pointer-events:none}
 .era i::before{content:"";position:absolute;top:-1px;left:50%;width:1px;height:6px;background:var(--ctlline)}
-.era u{position:absolute;top:13px;width:14px;height:14px;margin-left:-7px;border-radius:50%;background:var(--paper);box-shadow:0 0 0 4px rgba(241,232,212,.15),0 0 18px rgba(241,232,212,.5);transition:left .7s cubic-bezier(.3,.8,.2,1)}
-.era s{position:absolute;top:-2px;transform:translateX(-50%);font:600 13px/1 system-ui,sans-serif;text-decoration:none;color:var(--ctl);transition:left .7s cubic-bezier(.3,.8,.2,1)}
+.era i.egg-tick{pointer-events:auto;cursor:pointer;color:rgba(233,220,192,.55);padding-top:0;top:16px}
+.era i.egg-tick::before{top:4px;width:9px;height:9px;margin-left:-4.5px;border-radius:50%;background:var(--paper);border:1px solid var(--ctlline)}
+.era u{position:absolute;top:13px;width:14px;height:14px;margin-left:-7px;border-radius:50%;background:var(--paper);box-shadow:0 0 0 4px rgba(241,232,212,.15),0 0 18px rgba(241,232,212,.5);transition:left .7s cubic-bezier(.3,.8,.2,1);pointer-events:none}
+.era s{position:absolute;top:-2px;transform:translateX(-50%);font:600 13px/1 system-ui,sans-serif;text-decoration:none;color:var(--ctl);transition:left .7s cubic-bezier(.3,.8,.2,1);pointer-events:none}
+
 .stage{perspective:2200px;position:relative;touch-action:pan-y}
 .stage::before{content:"";position:absolute;inset:-13px -14px -19px;z-index:-1;border-radius:10px;background:linear-gradient(135deg,#55321f,#2b1710 55%,#41261a);box-shadow:0 34px 60px rgba(0,0,0,.7),inset 0 0 0 5px #2b1710,inset 0 0 0 6px rgba(201,162,90,.5),inset 0 2px 6px rgba(255,255,255,.12)}
 .edge{position:absolute;top:5px;bottom:5px;background:repeating-linear-gradient(90deg,#e0d4b4 0 1px,#b5a680 1px 2px);transition:width .6s,left .6s,right .6s;box-shadow:inset 0 0 6px rgba(60,40,20,.5)}
@@ -32,6 +63,7 @@ header b{color:var(--ctl);font-weight:600}
 
 /* Layout normale a doppio foglio su PC / schermi grandi */
 .book{position:relative;display:grid;grid-template-columns:1fr 1fr;min-height:580px;border-radius:6px;box-shadow:0 2px 0 #e3d7b9,0 4px 0 #c9bc98,0 6px 0 #e3d7b9,0 8px 0 #bfb08a,0 0 0 1px rgba(0,0,0,.5);background:var(--paper)}
+.book.dragging,.book.dragging *{user-select:none !important;cursor:grabbing !important}
 .book::after{content:"";position:absolute;top:0;bottom:0;left:50%;width:46px;transform:translateX(-50%);pointer-events:none;background:linear-gradient(90deg,transparent,rgba(60,40,20,.22) 38%,rgba(40,25,10,.5) 50%,rgba(60,40,20,.22) 62%,transparent)}
 .page{position:relative;padding:36px 38px 56px;color:var(--ink);backface-visibility:hidden}
 .page.l{border-radius:6px 0 0 6px;transform-origin:100% 50%;background:linear-gradient(270deg,rgba(70,45,20,.2),transparent 14%),linear-gradient(var(--paper),var(--paper2))}
@@ -75,6 +107,11 @@ p{margin:0}.vs p,.cd p,.note p{font-size:15.5px;line-height:1.52}
 .note{margin-top:12px}
 .sep{margin:16px 0 14px;padding-top:14px;border-top:1px dashed var(--rule)}
 .sec-h{margin:0 0 10px;font:700 12px/1.3 system-ui,-apple-system,"Segoe UI",sans-serif;text-transform:uppercase;letter-spacing:.05em;color:var(--accent)}
+
+.egg-body{font-size:18px;line-height:1.68;white-space:pre-wrap;margin:8px 0 16px;color:var(--ink)}
+.egg-nav{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.egg-nav button{color:var(--ink);background:rgba(42,31,23,.08);border-color:var(--rule)}
+.egg-nav button:hover:not(:disabled){background:rgba(42,31,23,.16)}
 
 .page.airy .lead{font-size:20px;line-height:1.68;margin-bottom:20px}
 .page.airy .key span{font-size:17px;line-height:1.52}
@@ -129,8 +166,15 @@ button:focus-visible{outline:2px solid var(--ctl);outline-offset:2px}
   nav{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
   #prev{grid-column:1;grid-row:1;width:100%}
   #next{grid-column:2;grid-row:1;width:100%}
-  .pills{grid-column:1 / -1;grid-row:2;display:flex;flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;max-width:100%;padding:4px 2px 6px;gap:6px;-webkit-overflow-scrolling:touch;scrollbar-width:none;scroll-behavior:smooth}
-  .pills::-webkit-scrollbar{display:none}
+  .pills{
+    grid-column:1 / -1;grid-row:2;display:flex;flex-wrap:nowrap;justify-content:flex-start;
+    overflow-x:auto;max-width:100%;padding:4px 2px 8px;gap:6px;
+    -webkit-overflow-scrolling:touch;scrollbar-width:thin;
+    scrollbar-color:var(--sb-thumb) var(--sb-track);scroll-behavior:smooth
+  }
+  .pills::-webkit-scrollbar{height:6px}
+  .pills::-webkit-scrollbar-track{background:var(--sb-track);border-radius:999px}
+  .pills::-webkit-scrollbar-thumb{background:var(--sb-thumb);border-radius:999px}
   .pills button{flex:0 0 auto;padding:8px 12px;font-size:12px}
 }
 @media (prefers-reduced-motion:reduce){.ink{animation:none;opacity:1}.era u,.era s{transition:none}}
@@ -142,81 +186,220 @@ button:focus-visible{outline:2px solid var(--ctl);outline-offset:2px}
 <div class="era" id="era"></div>
 <div class="stage" id="stage"><i class="edge el" id="el"></i><i class="edge er" id="er"></i><div class="book" id="book"><section class="page l" id="pl"></section><section class="page r" id="pr"></section></div></div>
 <nav aria-label="Navigazione tra le carte"><button id="prev">← Pagina prec.</button><div class="pills" id="pills"></div><button id="next">Pagina succ. →</button></nav>
-<p class="hint" id="hint">Frecce ← → per sfogliare · la lanterna scorre lungo la linea del tempo</p>
+<p class="hint" id="hint">Frecce ← → o trascina le pagine per sfogliare · la lanterna scorre lungo la linea del tempo</p>
 <div class="snd"><button id="mute" aria-pressed="false">Suono: attivo</button></div>
 </div>
 <script>
 const COL=["#8c2f2a","#b07a2a","#3f6b62","#5a4a8a","#a14a7a","#2f5f8c","#7a7a2f"];
 const C=[
 {p:"Frontespizio",g:0,y:1861,k:"Italia postunitaria · 1860–fine Ottocento",t:"L’Italia s’è desta",
- l:"Non una corrente letteraria, ma una fase storico-politica: la costruzione del nuovo Stato. Fatta l’Italia, bisogna far sentire gli abitanti parte di una stessa nazione, e scuola, stampa, cultura e scrittori sono chiamati all’impresa.",
- c:["Identità nazionale","Divario tra regioni","Scuola e stampa"],key:["Postunitario","Periodo definito più dalla storia italiana che da una poetica."],
- r:{h:"Apparato critico",t:"notes",i:[["In Europa","Le trasformazioni partono dal 1848-49; in Italia arrivano più lente e diseguali."],["Compito degli scrittori","Diffondere tradizioni, valori e un’immagine condivisa del Paese."],["Come leggere","A sinistra il tema e i concetti; a destra cronologie, confronti e schede."]]}},
+ l:"Non una corrente culturale, ma una fase storico-politica: la costruzione del nuovo Stato. Fatta l’Italia, occorre far sentire gli abitanti parte di una stessa nazione, e istituzioni, scuola, stampa e scrittori sono chiamati a costruire una coscienza comune.",
+ c:["Patria letteraria","Divario regionale","Memoria condivisa"],key:["Postunitario","Periodo definito più dalla storia italiana che da una poetica."],
+ r:{h:"Quadro culturale",t:"notes",i:[["In Europa","Le trasformazioni partono già dal 1848-49; in Italia arrivano più lente e diseguali."],["Patria letteraria","Dante, Petrarca e i classici offrivano già un’identità culturale; monumenti, targhe e vie la trasformano in memoria civica."],["Compito degli scrittori","Diffondere tradizioni, valori e un’immagine condivisa del Paese."]]}},
 {p:"Fare l’Italia",g:0,y:1861,k:"La difficile conquista dell’Unità",t:"Un’unità per tappe",
- l:"Dall’alleanza con Napoleone III alla presa di Roma, il Regno si compone a più riprese: restano fuori il Veneto, Roma e il Sud borbonico.",
+ l:"Dall’alleanza con Napoleone III ai plebisciti e alla presa di Roma, il Regno si compone a più riprese. Ma l’unità politica non cancella gli squilibri tra Nord e Sud, la povertà rurale e la distanza tra istituzioni e popolazione.",
  c:["Plebisciti","I Mille","Roma capitale"],key:["I Mille","Garibaldi, pur repubblicano, consegna i territori conquistati a Vittorio Emanuele II."],
  r:{h:"Cronologia",t:"tl",i:[["1848","Prima guerra d’indipendenza"],["1859","Seconda guerra: Vittorio Emanuele II e Napoleone III contro l’Austria; annessa la Lombardia"],["1860","Spedizione dei Mille: Garibaldi conquista il Regno delle Due Sicilie"],["17 marzo 1861","Proclamazione del Regno a Torino"],["1866","Terza guerra d’indipendenza: il Veneto"],["1870-71","Roma capitale; al papa restano Vaticano, Laterano, Castel Gandolfo"]]}},
 {p:"Un Paese diviso",g:0,y:1877,k:"Destra, Sinistra e questione meridionale",t:"Governare un Paese diviso",
- l:"La Destra storica centralizza sul modello piemontese e alza le tasse; la Sinistra allarga voto e istruzione, ma il trasformismo ne frena l’azione. Intanto il Sud viene «scoperto» anche dalla letteratura di Verga, Capuana, De Roberto e Serao.",
- c:["Brigantaggio","Latifondo","Verismo"],key:["Trasformismo","Passaggio di parlamentari da uno schieramento all’altro."],
- r:{h:"Cronologia",t:"tl",i:[["1861-76","Destra storica: leva obbligatoria e tasse alimentano il malcontento"],["1876","Governa la Sinistra storica"],["1877","Inchiesta Franchetti-Sonnino: lavoro minorile, usura, corruzione, mafia"],["1892","Nasce il Partito socialista italiano"],["1898","Repressione militare delle proteste di Milano"],["1900","Bresci uccide Umberto I"]]}},
+ l:"La Destra storica estende leggi e amministrazione piemontesi e alza le tasse; la Sinistra allarga voto e istruzione, frenata dal trasformismo. Intanto emerge la questione meridionale, raccontata da Verga, Capuana, De Roberto e Matilde Serao.",
+ c:["Brigantaggio","Latifondo","Verismo"],key:["Trasformismo","Passaggio di parlamentari da uno schieramento all’altro, che limita le riforme."],
+ r:{h:"Cronologia",t:"tl",i:[["1861-76","Destra storica: modello piemontese, leva obbligatoria e tasse alimentano il malcontento"],["1876","Governa la Sinistra storica; l’azione è frenata dal trasformismo"],["1877","Inchiesta Franchetti-Sonnino: lavoro minorile, usura, contrabbando, corruzione, mafia"],["1892","Nasce il Partito socialista italiano"],["1898","Repressione militare delle proteste di Milano"],["1900","L’anarchico Gaetano Bresci uccide Umberto I"]]}},
 {p:"Lingua e scuola",g:1,y:1868,k:"La lingua, le lingue",t:"Una lingua per tutti",
- l:"Senza lingua comune i cittadini non capiscono leggi e amministrazione. La scuola è lo strumento: legge Casati (1859), Coppino (1877, obbligo a nove anni), e I promessi sposi come modello. Ma nel 1864-65 molte classi parlano ancora solo dialetto.",
- c:["Casati","Coppino","Dialetti"],key:["Analfabetismo","Oltre l’80% degli adulti negli anni Cinquanta; migliora, ma il divario Nord-Sud resta."],
- r:{h:"Il dibattito",t:"vs",a:["Manzoni","Nel 1868, presiedendo la commissione del ministro Broglio, propone il fiorentino vivo come lingua comune e un vocabolario basato sull’uso di Firenze."],b:["Ascoli","Una lingua nazionale nasce da cultura, istruzione e circolazione delle idee, non per decreto."],n:"Alla fine l’italiano si diffonde con urbanesimo, industrie, migrazioni Sud-Nord e stampa nazionale."}},
+ l:"Senza lingua comune i cittadini non capiscono leggi e amministrazione. La scuola è lo strumento: legge Casati (1859, biennio gratuito), Coppino (1877, obbligo a 9 anni), scuole tecniche (1880) e I promessi sposi come modello, ma nel 1864-65 molte classi parlano ancora solo dialetto.",
+ c:["Casati e Coppino","Scuole tecniche","Dialetti"],key:["Analfabetismo","Oltre l’80% degli adulti negli anni ’50; scende dopo l’Unità, ma resta forte il divario Nord-Sud."],
+ r:{h:"Il dibattito",t:"vs",a:["Manzoni","Nel 1868, nella commissione del ministro Emilio Broglio, propone il fiorentino vivo come lingua comune e un vocabolario dell’uso di Firenze."],b:["Ascoli","Critica l’imposizione dall’alto: una lingua nazionale nasce da cultura, istruzione e circolazione delle idee."],n:"L’italiano si diffonde poi con urbanesimo, industrie, migrazioni Sud-Nord, stampa nazionale e circolazione libraria."}},
 {p:"Città e critica",g:2,y:1871,k:"Nuovi protagonisti e strumenti intellettuali",t:"Città, stampa e critica",
- l:"Nascono università, accademie, biblioteche e musei; lo scrittore non vive più alla corte ma deve misurarsi con editoria e pubblico. De Sanctis legge la letteratura come vita morale e civile di un popolo.",
- c:["Editoria","Periodici","De Sanctis"],key:["De Sanctis","Nella sua Storia della letteratura le opere si studiano nel rapporto con il tempo e la società."],
- r:{h:"Le città della cultura",t:"cards",i:[["Milano","Editoria, economia, apertura europea"],["Torino","Prima capitale, funzione politica e culturale"],["Firenze","Centro di studi e dibattito linguistico"],["Roma","Dal 1871 capitale politica e simbolica"]]}},
+ l:"Nascono università, accademie, biblioteche, musei e istituti di ricerca; lo scrittore non vive più a corte ma si misura con mercato editoriale e pubblico. Francesco De Sanctis legge la letteratura come vita morale e civile di un popolo.",
+ c:["Mercato editoriale","Periodici","De Sanctis"],key:["De Sanctis","Nella sua Storia della letteratura italiana le opere si studiano nel rapporto con il tempo e la società."],
+ r:{h:"Le città della cultura",t:"cards",i:[["Milano","Editoria, vita economica, circoli e apertura europea"],["Torino","Prima capitale, importante funzione politica e culturale"],["Firenze","Centro di studi e dibattito linguistico"],["Roma","Dal 1871 capitale politica e simbolica"]]}},
 {p:"Memoria e romanzo",g:3,y:1861,k:"Tra memorialistica e romanzo storico",t:"Dalla storia alla memoria",
- l:"Eroi celebrati, monumenti, letteratura garibaldina: la narrativa trasforma la storia recente in memoria condivisa. Poi il romanzo storico guarda al presente, e l’eroe lascia posto a personaggi più realistici.",
+ l:"Eroi celebrati e letteratura garibaldina trasformano la storia recente in memoria condivisa. Dalla metà dell’Ottocento il romanzo storico guarda anche al presente, si apre a temi psicologici e sostituisce l’eroe con personaggi più complessi.",
  c:["Letteratura garibaldina","Rovani","Realismo"],key:["Letteratura garibaldina","Racconta le imprese dei volontari tra cronaca, testimonianza e romanzo, con intento celebrativo."],
- r:{h:"Una svolta: Cento anni",t:"notes",i:[["Giuseppe Rovani","Cento anni esce a puntate e poi in volume: attraversa un lungo arco di tempo."],["La storia come forza","Non è più sfondo: incide direttamente sulle vite dei personaggi."],["Nuovo tempo","Il passato si guarda in rapporto a presente e futuro; la memoria interpreta il cambiamento."]]}},
+ r:{h:"Una svolta: Cento anni",t:"notes",i:[["Giuseppe Rovani","Cento anni esce a puntate e poi in volume: attraversa un lungo arco di tempo."],["La storia come forza","Non è più semplice sfondo: incide direttamente sulle vite e contraddizioni dei personaggi."],["Nuovo tempo","Il passato si osserva in rapporto a presente e futuro; la memoria interpreta il cambiamento."]]}},
 {p:"Nievo",g:3,y:1867,k:"Le confessioni d’un italiano",t:"Nievo e la formazione di un italiano",
- l:"Scritto nel 1857-58 e uscito postumo nel 1867 come Le confessioni di un ottuagenario: un anziano ricostruisce la sua vita e il cammino verso l’Unità. Romanzo di formazione, affresco storico e melodramma insieme.",
- c:["Formazione","Memoria","Melodramma"],key:["Carlo Altoviti","Narratore retrospettivo: la sua maturazione coincide con la trasformazione politica del Paese."],
- r:{h:"Scheda d’autore",t:"stat",b:"1831–61",d:"Ippolito Nievo, nato a Padova, partecipa alla vita politica e militare del Risorgimento.",i:[["Arco storico","Fine dell’antico regime, campagne napoleoniche, Restaurazione, Risorgimento."],["Privato e pubblico","Amore e vita di campagna si intrecciano agli eventi politici."],["Gusto popolare","Passioni, intrighi, riconoscimenti e colpi di scena."]]}},
+ l:"Scritto nel 1857-58 e uscito postumo nel 1867 come Le confessioni di un ottuagenario: un anziano ricostruisce la propria vita e il cammino verso l’Unità. Romanzo di formazione, affresco storico e melodramma insieme.",
+ c:["Formazione","Memoria","Melodramma"],key:["Carlo Altoviti","Narratore retrospettivo: la sua maturazione coincide con la formazione di una coscienza nazionale."],
+ r:{h:"Scheda d’autore",t:"stat",b:"1831–61",d:"Ippolito Nievo, nato a Padova, partecipa alla vita politica e militare del Risorgimento.",i:[["Arco storico","Fine dell’antico regime, campagne napoleoniche, Restaurazione, Risorgimento."],["Privato e pubblico","Amore e vita di campagna si intrecciano agli eventi politici."],["Gusto popolare","Passioni intense, intrighi, riconoscimenti e colpi di scena."]]}},
 {p:"Melodramma",g:3,y:1861,k:"Melodramma e «spirito nazionale»",t:"La nazione in platea",
  l:"Teatro e musica riuniscono pubblici diversi: emozioni, valori e temi patriottici si condividono in sala. Le opere di Verdi accompagnano il Risorgimento e diventano un riferimento comune.",
  c:["Verdi","Libretti","Pubblico popolare"],key:["Lingua dei libretti","Solenne e letteraria, ma resa familiare da musica e ripetizione: diffonde un lessico condiviso."],
- r:{h:"Apparato",t:"notes",i:[["Partecipazione corale","Il pubblico condivide emozioni e immaginario."],["Più che intrattenimento","Lo spettacolo è anche spazio di partecipazione civile e identità collettiva."],["Eredità","Nievo e Salgari ne assorbono la teatralità; Boito lega Scapigliatura e opera."]]}},
+ r:{h:"Apparato",t:"notes",i:[["Partecipazione corale","Parole, musica, gesti e scene creano un linguaggio emotivo condiviso."],["Più che intrattenimento","Lo spettacolo è anche spazio di partecipazione civile e identità collettiva."],["Eredità","Nievo e Salgari ne assorbono la teatralità; Boito lega Scapigliatura e opera."]]}},
 {p:"Scapigliatura",g:4,y:1865,k:"Milano fra Italia ed Europa",t:"Ribellarsi a Milano",
- l:"Tra editori, giornali e teatri, Milano accoglie una bohème che rifiuta le convenzioni borghesi, il materialismo e il modello morale di Manzoni. Guarda a Baudelaire, Poe, Hoffmann, Nerval: fantastico, macabro, irrazionale.",
- c:["Bohème","Fantastico","Sperimentazione"],key:["Non una scuola","Insieme di ribelli: anticipa la crisi dell’intellettuale moderno."],
- r:{h:"I protagonisti",t:"cards",i:[["Praga","Poeta e pittore: modernità e nostalgia"],["Boito","Musicista e librettista: ponte con il melodramma"],["Tarchetti","Morboso e fantastico, malattia e morte"],["Dossi","Invenzione linguistica e ironia"],["Imbriani","Provocazione e anticonformismo"]]}},
+ l:"Tra editori, giornali e teatri, Milano accoglie una bohème che rifiuta le convenzioni borghesi, l’utile e il modello morale di Manzoni. Guarda a Baudelaire, Poe, Hoffmann, Nerval: fantastico, macabro, perturbante, sogno e dualismo tra bene e male.",
+ c:["Bohème","Anti-Manzoni","Dualismo"],key:["Stile e temi","Sperimentazione e mescolanza di registri (grottesco, lirico, ironia) per esprimere il conflitto artista-società."],
+ r:{h:"I protagonisti",t:"cards",i:[["Praga","Poeta e pittore: attrazione per il moderno e nostalgia"],["Boito","Musicista e librettista: ponte con il melodramma"],["Tarchetti","Morboso e fantastico, malattia, morte e irrazionale"],["Dossi","Invenzione linguistica, deformazioni e ironia"],["Imbriani","Provocazione e scrittura anticonvenzionale"]]}},
 {p:"Carducci",g:5,y:1860,k:"La vita e il percorso biografico",t:"Carducci: vita e formazione",
- l:"Nasce a Valdicastello (Pietrasanta) nel 1835 da una famiglia colta e liberale; cresce in Maremma, a Bolgheri e Castagneto, studiando i classici col padre Michele. Studia alla Normale di Pisa, insegna a San Miniato e nel 1860 ottiene la cattedra di eloquenza italiana a Bologna, dove vive e insegna per decenni.",
- c:["Maremma e Bolgheri","Scuola Normale","Bologna (1860)"],key:["Una vita tra studio e battaglie","Segnato da lutti familiari (il fratello Dante, la madre, il figlioletto Dante) e da un lavoro instancabile di docente, critico e poeta."],
+ l:"Nasce a Valdicastello (Versilia) nel 1835. Dopo gli studi alla Scuola Normale di Pisa, insegna nei licei e nel 1860 ottiene la cattedra di eloquenza italiana a Bologna. Dal giacobinismo repubblicano e anticlericale passa a posizioni più moderate e monarchiche.",
+ c:["Valdicastello","Scuola Normale","Bologna (1860)"],key:["Una vita tra studio e battaglie","Segnato dai lutti familiari e da un intenso impegno civile; nel 1906 è il primo italiano Premio Nobel."],
  v:["I cipressi che a Bólgheri alti e schietti","van da San Guido in duplice filar,"],s:"Davanti San Guido, Rime nuove",
- r:{h:"Tappe della vita",t:"tl",i:[["1835","Nasce il 27 luglio a Valdicastello; infanzia tra Versilia e Maremma"],["1853-56","Si forma alla Scuola Normale Superiore di Pisa e si laurea"],["1860","Ottiene la cattedra di letteratura italiana a Bologna (a soli 25 anni)"],["1870-71","Muore il figlioletto Dante a tre anni e muore la madre; nasce la figlia Annie Vivanti/Lidia e la relazione con Carolina Cristofori Piva"],["1890","Diventa senatore del Regno; nel 1906 è il primo italiano Premio Nobel per la letteratura"],["1907","Muore a Bologna il 16 febbraio; gli succede sulla cattedra Giovanni Pascoli"]]}},
-{p:"Pensiero di Carducci",g:5,y:1876,k:"Ideologia, storia e poesia civile",t:"Il pensiero di Carducci",
- l:"Il suo percorso segue le tensioni dell’Italia unita: all’inizio è giacobino, repubblicano e anticlericale (contro il potere temporale e il sentimentalismo), poi si avvicina alla monarchia sabauda e a una visione nazionale più moderata.",
- c:["Repubblica e monarchia","Anticlericalismo","Vitalismo storico"],key:["Dalla rivolta all’ordine","Passa dall’impeto giacobino e anticlericale alla ricerca di stabilità e identità nazionale."],
+ r:{h:"Tappe della vita",t:"tl",i:[["1835","Nasce a Valdicastello, in Versilia; cresce a contatto con la Maremma"],["1853-56","Si forma alla Scuola Normale Superiore di Pisa"],["1860","Ottiene la cattedra di eloquenza italiana all’Università di Bologna"],["1870-71","Muore il figlioletto Dante; vive l’amore per Carolina Cristofori Piva (Lidia)"],["1906","Riceve il Premio Nobel per la letteratura"],["1907","Muore a Bologna"]]}},
+{p:"Poetica di Carducci",g:5,y:1876,k:"Vate laico, antiromanticismo e metodo",t:"Il «vate» laico e l’artiere",
+ l:"Come «vate» laico celebra la storia (Comuni medievali, Rivoluzione francese) e condanna il presente conformista. Ostile al Romanticismo spiritualista e sentimentale, oppone il poeta «artiere» (il labor limae di Orazio), ma apre anche all’interiorità e ai simbolisti francesi.",
+ c:["Poeta artiere","Antiromanticismo","Metodo storico"],key:["Classicismo moderno","Riprende forme e metrica antiche per dare dignità civile al presente, senza rinunciare alle emozioni."],
  v:["Salute, o satana, / o ribellione, / o forza vindice / de la ragione!"],s:"Inno a Satana (1863)",
- r:{h:"Assi del pensiero",t:"vs",a:["Anticlericalismo e ragione","Nell’Inno a Satana (1863) Satana è il principio della libertà, della scienza e del progresso contro l’ascetismo e l’oscurantismo."],b:["Storia, nazione e classicità","Vede nella storia una forza vitale e civile; nei Giambi ed epodi denuncia la delusione postunitaria, poi celebra la patria e la tradizione."],n:"Il suo classicismo non è fuga dal presente, ma uno strumento severo e appassionato per giudicare la società e la storia."}},
+ r:{h:"Poetica e critica",t:"vs",a:["Polemica antiromantica","Rifiuta lo spiritualismo e il patetismo (Aleardi, Prati), esaltando l’equilibrio formale e l’impegno civile di Foscolo."],b:["Critico e prosatore","La «scuola carducciana» applica un metodo influenzato dal Positivismo: verifica storica, documenti e fonti; scrive saggi, polemiche e lettere."],n:"Accanto al tono ufficiale, esplora lutto, nostalgia e presentimenti di morte dialogando con Baudelaire e i parnassiani."}},
 {p:"Pianto e stazione",g:5,y:1871,k:"Rime nuove e Odi barbare",t:"Due liriche, due dolori",
- l:"Dalle Rime nuove alle Odi barbare: memoria, affetti, paesaggi e una metrica che imita in italiano i ritmi antichi. «Barbare» è provocatorio: il verso suona strano perché riproduce una metrica quantitativa con una lingua fondata sull’accento.",
- c:["Rime nuove","Odi barbare","Metrica"],key:["Cromatismo","In Pianto antico il verde e il rosso della vita si oppongono a freddo, nero e silenzio."],
+ l:"Dalle Rime nuove alle Odi barbare: memoria, affetti e una metrica che imita in italiano i ritmi greci e latini. «Barbare» è provocatorio: il verso suona strano perché riproduce una metrica quantitativa con una lingua fondata sull’accento.",
+ c:["Rime nuove","Odi barbare","Cromatismo"],key:["Cromatismo","In Pianto antico il verde e il rosso della vita si oppongono al freddo e al nero della morte."],
  v:["L’albero a cui tendevi","la pargoletta mano,"],s:"Pianto antico",
- r:{h:"Confronto",t:"vs",a:["Pianto antico","Giugno 1871, dopo la morte del figlioletto Dante: il melograno fiorisce, il bambino non torna."],b:["Alla stazione in una mattina d’autunno","Lidia, cioè Carolina Cristofori Piva, parte in treno da Bologna: il treno è un mostro metallico, il suo ricordo è luminoso."],n:"Nell’una la natura continua a vivere; nell’altra la modernità porta via l’amata."}},
-{p:"Pinocchio e Cuore",g:6,y:1883,k:"Narrativa di successo e identità nazionale",t:"Educare l’Italia",
- l:"Il pubblico dei lettori cresce e il romanzo diventa genere popolare. Due libri per ragazzi entrano nell’immaginario collettivo: valori, lavoro, solidarietà, senso del dovere.",
- c:["Pinocchio","Cuore","Pedagogia"],key:["Palestra di unità nazionale","La classe di Cuore è l’Italia in miniatura: le differenze diventano comunità."],
- r:{h:"Due modelli",t:"vs",a:["Collodi · Pinocchio","Carlo Lorenzini (Firenze, 1826). A puntate dal 1881 sul «Giornale per i bambini», in volume nel 1883. Fiaba, racconto toscano e romanzo di formazione: il burattino impara a farsi cittadino."],b:["De Amicis · Cuore","Nato a Oneglia nel 1846. Nel 1886 pubblica il diario di Enrico Bottini con lettere dei genitori e racconti mensili: una pedagogia dei sentimenti."],n:"Pinocchio è ambivalente: Collodi ama la sua insofferenza verso le regole."}},
-{p:"Salgari e Fogazzaro",g:6,y:1889,k:"Evasione e provincia",t:"Altrove di carta, piccolo mondo",
- l:"Il pubblico borghese cerca avventura esotica da una parte, memoria e sentimenti dall’altra. Intanto Verga con I Malavoglia e D’Annunzio con Il piacere (1889) conquistano i lettori.",
- c:["Romanzo d’appendice","Esotismo","Modernismo"],key:["Altrove «a tavolino»","Salgari costruisce luoghi lontani tra libri, giornali e fantasia: ha viaggiato poco."],
- r:{h:"Due mondi",t:"vs",a:["Salgari","Verona, 1862. Le Tigri di Mompracem, I misteri della Jungla Nera: suspense e colpi di scena dal romanzo d’appendice, sentimenti teatrali dal melodramma."],b:["Fogazzaro","Vicenza, 1842-1911. Malombra, Piccolo mondo antico, Il Santo: cattolicesimo liberale vicino al Modernismo, ville e laghi veneti, memoria e nostalgia."],n:"Da un lato l’avventura lontana, dall’altro il «piccolo mondo» degli affetti."}}
+ r:{h:"Confronto",t:"vs",a:["Pianto antico (1871)","Pubblicata nel 1877: il giardino del melograno rifiorisce, ma dopo la morte del figlio Dante diventa un deserto silenzioso."],b:["Alla stazione in una mattina d’autunno","Lidia parte da Bologna: il treno è un mostro metallico con occhi di fiamma, simbolo ambivalente della modernità, contrapposto al ricordo luminoso."],n:"Lessico solenne e termini ferroviari si fondono per esprimere il vuoto della separazione."}},
+{p:"San Martino",g:5,y:1883,k:"Rime nuove, III, LVIII · Lettura del testo",t:"San Martino e la Maremma",
+ l:"Composta nel dicembre 1883 e ambientata l’8 novembre in un borgo maremmano: al paesaggio esterno aspro, spoglio e battuto dal maestrale si oppone il calore conviviale del paese tra vino novello e spiedo scoppiettante.",
+ c:["8 novembre","Maremma","Contrasto"],key:["Chiusa malinconica","Gli uccelli neri che migrano al crepuscolo («com’esuli pensieri») riportano una nota pensosa e fugace."],
+ v:["La nebbia a gl’irti colli piovigginando sale,","e sotto il maestrale / urla e biancheggia il mar;"],s:"San Martino, Rime nuove (1883)",
+ r:{h:"Immagini e lessico",t:"vs",a:["Natura aspra e malinconia","Colli «irti» (spogli), pioviggine, maestrale freddo di nord-ovest e stormi neri nel «vespero» (crepuscolo)."],b:["Calore umano nel borgo","Il «ribollir de’ tini» (fermentazione del mosto), l’aspro odore del vino nuovo e lo spiedo sui ceppi accesi rallegrano gli animi."],n:"Il cacciatore fischia sull’uscio osservando il volo degli uccelli: gioia semplice e coscienza dello scorrere del tempo."}},
+{p:"Narrativa e pubblico",g:6,y:1885,k:"Pubblico, città e provincia nell’Ottocento",t:"Il romanzo e i nuovi lettori",
+ l:"Cresce il pubblico borghese e il romanzo diventa genere popolare: storico, di formazione, diaristico e d’avventura. Accanto al successo di Verga (I Malavoglia) e D’Annunzio (Il piacere, 1889), la narrativa esplora l’altrove esotico e il contrasto città-campagna.",
+ c:["Pubblico borghese","Città moderna","Provincia"],key:["Spaesamento urbano","Il piccolo impiegato che lascia la campagna si sente smarrito nella metropoli moderna."],
+ r:{h:"Tendenze del romanzo",t:"cards",i:[["Identità ed educazione","Pinocchio e Cuore formano i giovani cittadini della nuova Italia"],["Evasione ed esotico","Viaggi ricostruiti «a tavolino» per sfuggire alla routine borghese"],["Città vs Campagna","La metropoli genera crisi individuale; la provincia custodisce affetti"],["Verismo ed estetismo","Verga racconta gli umili; D’Annunzio intercetta il gusto mondano"]]}},
+{p:"Collodi",g:6,y:1883,k:"Carlo Collodi e Pinocchio",t:"Il burattino che si fa cittadino",
+ l:"Carlo Lorenzini (Firenze, 1826), giornalista e traduttore di fiabe francesi, pubblica Le avventure di Pinocchio a puntate sul «Giornale per i bambini» dal 1881 e in volume nel 1883: un nuovo romanzo di formazione tra fiaba, racconto orale toscano e romanzo d’appendice.",
+ c:["Giornale per i bambini","Formazione","Metamorfosi"],key:["Libro ambivalente","Trasmette valori di lavoro, sacrificio e dovere, ma Collodi guarda con simpatia all’indole irrequieta di Pinocchio."],
+ r:{h:"Struttura e significati",t:"notes",i:[["Realtà e fantasia","Strade e paesi reali convivono con il Grillo parlante, il Gatto e la Volpe."],["Richiami letterari","Nella vicenda affiorano echi folklorici e rimandi a Dante, Ariosto e Manzoni."],["La metamorfosi","Attraverso prove ed errori il burattino diventa bambino e accetta le proprie responsabilità."]]}},
+{p:"De Amicis",g:6,y:1886,k:"Edmondo De Amicis e Cuore",t:"La pedagogia dei sentimenti",
+ l:"Nato a Oneglia nel 1846, ex militare e celebre autore di reportage di viaggio, nel 1886 pubblica Cuore. Attraverso il diario di Enrico Bottini, le lettere dei genitori e i racconti mensili, il libro educa i giovani lettori commuovendoli.",
+ c:["Diario scolastico","Racconti mensili","Unità nazionale"],key:["Palestra di unità nazionale","La classe riunisce ragazzi di regioni e ceti diversi per trasformarli in una comunità solidale."],
+ r:{h:"I ruoli in Cuore",t:"vs",a:["Enrico e i compagni","Personaggi-modello che incarnano virtù o difetti delle diverse regioni e classi sociali italiane."],b:["Genitori e maestri","I padri rappresentano autorità e dovere, le madri l’affetto familiare, gli insegnanti la guida morale e il sacrificio."],n:"Struttura aperta che intreccia cronaca quotidiana, epistole educative ed esempi patriottici."}},
+{p:"Salgari",g:6,y:1883,k:"Emilio Salgari e il romanzo d’avventura",t:"Un «altrove» di carta",
+ l:"Nato a Verona nel 1862, dopo un breve imbarco lungo l’Adriatico diventa un «viaggiatore alla scrivania». Dal 1883 pubblica romanzi come I misteri della Jungla Nera e Le Tigri di Mompracem, conquistando il pubblico con eroi coraggiosi in lotta contro le ingiustizie.",
+ c:["Avventura esotica","Romanzo d’appendice","Melodramma"],key:["Altrove «a tavolino»","Ricostruisce luoghi lontani tramite libri, giornali e fantasia, offrendo evasione dal grigiore quotidiano."],
+ r:{h:"I segreti del successo",t:"vs",a:["Meccanismi d’appendice","Pubblicazioni a puntate costruite su ritmo incalzante, suspense, imprevisti e colpi di scena."],b:["Impronta melodrammatica","Gesti solenni, sentimenti teatrali ed eroi legati a ideali assoluti di onore e lealtà."],n:"L’esotismo avventuroso diventa uno strumento popolare di evasione e identificazione."}},
+{p:"Fogazzaro",g:6,y:1895,k:"Antonio Fogazzaro e il «piccolo mondo»",t:"Il piccolo mondo dei sentimenti",
+ l:"Nato a Vicenza nel 1842 (morto nel 1911), scrive Malombra, Daniele Cortis, Piccolo mondo antico, Piccolo mondo moderno e Il Santo (entrato in contrasto con la Chiesa). Cattolico liberale vicino al Modernismo, mette al centro i conflitti interiori.",
+ c:["Modernismo","Provincia veneta","Conflitto interiore"],key:["Paesaggio come stato d’animo","Ville, giardini e laghi veneti formano un «piccolo mondo» intimo che riflette l’interiorità dei personaggi."],
+ r:{h:"Poetica e personaggi",t:"vs",a:["Uomini e donne","Personaggi maschili idealisti e spirituali; figure femminili dalla sensibilità intensa e inquieta."],b:["Desiderio e dovere","Al centro non c’è la grande storia, ma dubbi morali, rinunce, memoria del passato e nostalgia."],n:"Una narrativa psicologica e sentimentale sospesa tra tradizione cattolica e cultura moderna."}}
 ];
 
-const Y0=1848,Y1=1911,$=id=>document.getElementById(id),book=$("book"),pl=$("pl"),pr=$("pr");
-let cur=0,busy=false;
+const EGG_PAGES=[
+  {
+    kick:"Anno 2026 · Pagina segreta I",
+    title:"Il ritorno in quinto",
+    lead:"E rieccoci qui, adesso siamo in quinto e se c'è un dubbio sul perché abbia detto RIeccoci e non eccoci è perché già nel primo lavoro su Alfieri e Parini avevo nascosto un testo \"segreto\".",
+    body:`Nella parte di Parini bastava selezionare l'ultimo libro nell'angolo
+in basso a destra nominato "Ode per la 4^B".
+Sono qui sempre perché mi piace inserire easter egg, o italianizzato,
+"contenuti nascosti" all'interno dei miei lavori.
+Siamo ormai all'inizio della fine, in quinto superiore e ahimé quanto
+non avrei mai voluto dirlo.`
+  },
+  {
+    kick:"Anno 2026 · Pagina segreta II",
+    title:"Cinque anni e un po' di vuoto",
+    lead:"Sono passati cinque anni da quando abbiamo iniziato questo percorso al liceo e ogni singolo secondo già mi manca prima di concluderlo.",
+    body:`Dover dare addio o almeno un arriverderci a questi momenti che
+sono diventati l'abitudine della mia giornata (andare a scuola e
+vedere questi 18 pingoni) mi lascia una sensazione di vuoto dentro.
+Ho sempre fatto la parte del menefreghista emotivo, e neanche in modo
+malizioso, però abbandonare tutto questo mi lascerà davvero stranito,
+non solo per i compagni di classe, ma anche per i docenti, perché ammettiamolo:
+abbiamo avuto davvero un bellissimo gruppo di docenti, comprese Di Adila e
+Mastrolitto che sono andate in pensione.`
+  },
+  {
+    kick:"Anno 2026 · Pagina segreta III",
+    title:"I giorni della settimana e i compagni",
+    lead:"Ogni giorno della settimana ha la sua scena fissa, i suoi tormentoni e le sue risate impossibili da dimenticare.",
+    body:`E quanto mi mancherà svegliarmi un lunedì e sentire Marta dire "non ho capito" ogni 5 minuti.
+E quanto mi mancherà svegliarmi un martedì e sentire la risata di Raffo risuonare in tutta l'aula.
+E quanto mi mancherà svegliarmi un mercoledì e insultare Iaia perché "ti voglio bene" non è un'opzione esplicitabile.
+E quanto mi mancherà svegliarmi un giovedì e vedere Federico discutere con la Palatella sull'ennesimo esercizio di matematica.
+E quanto mi mancherà svegliarmi un venerdì e sentire l'ennemisa cazzata con fonte TikTok detta da Mimmo.
+E quanto mi mancherà svegliarmi un sabato e sentire Ilaria parlare di quanto Mario la faccia stupidire.
+E quanto mi mancherà svegliarmi la domenica e non fare un caZ7_0 OKKK.
+E quanto mi mancherà prendere tutto il materiale di Noemi per farla impazzire.
+E quanto mi mancherà vedere Marco ballare in classe.
+E quanto mi mancherà vedere Leo e Cola rompere il cazzo a Marta e Claudia.
+E quanto mi mancherà sentire Imperia chiedere di farle un messaggio alle spalle.
+E quanto mi mancherà sentire Sofia chiedere chi le va a prendere la pizza al bar.
+E quanto mi mancherà sentire Alessia esclamare in dialetto.
+E quanto mi mancherà sentire Claudia fare l'altolocata.
+E quanto mi mancherà Maria incinta.
+E quanto mi mancherà sentire Federica organizzare il suo 18esimo da 4 mesi.
+E quanto mi mancherà sentire Chiara chiedere la stessa cosa per la 100esima volta.
+E quanto mi mancherà vedere Matteo che... anzi no, quello è un coglione.`
+  },
+  {
+    kick:"Anno 2026 · Pagina segreta IV",
+    title:"Prof e saluti finali",
+    lead:"Tra lezioni memorabili, frasi iconiche e saluti vari, resta tutto impresso.",
+    body:`E quanto mi mancherà sentire Botticella e la sua conoscenza enciclopedica.
+E quanto mi mancherà la di Giorgio che ricorderà sempre a tutti di assumere le proprie responsabilità.
+E quanto mi mancherà Valente e il suo pensiero sul rispetto.
+E quanto mi mancherà sentire la Cassano "io ragazzi vi lascio un po' prima" per andare a fumare insieme a cola e leo.
+E quanto mi mancherà sentire la Palatella gridare "RAGAAAAZZIIII".
+E quanto mi mancherà sentire Bordasco dire "TE STA CETT" a chiunque rompa il cazzo durante la sua lezione.
+E quanto mi mancherà vedere la Palmisano fare la metà del nostro disegno di ornato al posto nostro.
+E quanto mi mancherà sentire la Colella dire "RAGAZZI È TARDI" dopo essere stati nello spogliatoio per 30 secondi.
+E anche voi mi mancherete Chiara d.N., Gabriel P., Noemi L., Alessandro V. e Nicole Bian... anzi tu no ceh AHAHAHAH.`
+  }
+];
+
+const Y0=1848,Y1=1910,$=id=>document.getElementById(id),book=$("book"),pl=$("pl"),pr=$("pr"),era=$("era");
+/* Stato rigorosamente in memoria per la sessione corrente: nessun localStorage/sessionStorage */
+let cur=0,busy=false,eggUnlocked=false,eggOpen=false,eggPage=0;
 const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
 const mobileMq=matchMedia("(max-width:760px)");
 const isPhone=()=>mobileMq.matches;
-const pos=y=>((y-Y0)/(Y1-Y0)*100).toFixed(1)+"%";
+const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
+const pos=y=>(clamp((y-Y0)/(Y1-Y0),0,1)*94).toFixed(1)+"%";
 
-$("era").innerHTML=[1860,1870,1880,1890,1900,1910].map(y=>`<i style="left:${pos(y)}">${y}</i>`).join("")+`<u id="lan"></u><s id="lab"></s>`;
+/* Barra esattamente come prima, con l'ultimo punto senza anno subito dopo il 1910 */
+era.innerHTML=
+  [1860,1870,1880,1890,1900,1910].map(y=>`<i style="left:${pos(y)}">${y}</i>`).join("")+
+  `<i class="egg-tick" id="eggDot" style="left:99.5%" title="2026"></i>`+
+  `<u id="lan"></u><s id="lab"></s>`;
+
+$("eggDot").addEventListener("click",()=>openEgg2026(0));
+
+function esc(s){
+  return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+}
+
+function eggControlsHtml(pIdx){
+  const canPrev=pIdx>0;
+  const canNext=pIdx<EGG_PAGES.length-1;
+  return `<div class="egg-nav ink" style="--i:4">
+    <button type="button" id="eggPrev" ${canPrev?"":"disabled"}>← Pagina segreta prec.</button>
+    <button type="button" id="eggNext" ${canNext?"":"disabled"}>Pagina segreta succ. →</button>
+    <button type="button" id="eggBack">Torna alle carte</button>
+  </div>`;
+}
+
+function renderEggSingle(pIdx){
+  const pg=EGG_PAGES[pIdx];
+  return `<span class="fol">2026 · segreta ${pIdx+1}/${EGG_PAGES.length}</span>
+  <div class="kick ink" style="--i:0">${esc(pg.kick)}</div>
+  <h2 class="ink" style="--i:1">${esc(pg.title)}</h2>
+  <p class="lead ink" style="--i:2">${esc(pg.lead)}</p>
+  <p class="egg-body ink" style="--i:3">${esc(pg.body)}</p>
+  ${eggControlsHtml(pIdx)}
+  <span class="sig">segreta ${pIdx+1}/${EGG_PAGES.length}</span>`;
+}
+
+function renderEggDesktop(pIdx){
+  const pg=EGG_PAGES[pIdx];
+  const L=`<span class="fol">2026 · parte ${pIdx+1}/${EGG_PAGES.length}</span>
+  <div class="kick ink" style="--i:0">${esc(pg.kick)}</div>
+  <h2 class="ink" style="--i:1">${esc(pg.title)}</h2>
+  <p class="lead ink" style="--i:2">${esc(pg.lead)}</p>
+  <span class="sig">s. ${pIdx+1}r</span>`;
+
+  const R=`<span class="fol">diario · ${pIdx+1}/${EGG_PAGES.length}</span>
+  <div class="kick ink" style="--i:0">Contenuto nascosto</div>
+  <div class="egg-body ink" style="--i:1">${esc(pg.body)}</div>
+  ${eggControlsHtml(pIdx)}
+  <span class="sig">s. ${pIdx+1}v</span>`;
+  return [L,R];
+}
+
+function bindEggControls(){
+  const bBack=$("eggBack");
+  const bPrev=$("eggPrev");
+  const bNext=$("eggNext");
+  if(bBack)bBack.addEventListener("click",()=>{eggOpen=false;paint(cur)});
+  if(bPrev)bPrev.addEventListener("click",()=>{if(eggUnlocked&&eggOpen)goEgg(eggPage-1)});
+  if(bNext)bNext.addEventListener("click",()=>{if(eggUnlocked&&eggOpen)goEgg(eggPage+1)});
+}
 
 function rightBody(r,d){
   if(r.t==="tl")return `<ol class="tl">${r.i.map(x=>`<li class="ink" ${d()}><b>${x[0]}</b>${x[1]}</li>`).join("")}</ol>`;
@@ -256,12 +439,12 @@ function syncSlots(){
   if(phone){
     pl.className="page m-single";
     pr.style.display="none";
-    $("hint").textContent="Frecce ← → o swipe per sfogliare · la lanterna scorre lungo la linea del tempo";
+    $("hint").textContent="Frecce ← → o swipe (senza testo selezionato) per sfogliare · la lanterna scorre lungo la linea del tempo";
   }else{
     pl.className="page l";
     pr.className="page r";
     pr.style.display="";
-    $("hint").textContent="Frecce ← → per sfogliare · la lanterna scorre lungo la linea del tempo";
+    $("hint").textContent="Frecce ← → o trascina le pagine (senza testo selezionato) per sfogliare · la lanterna scorre lungo la linea del tempo";
   }
 }
 
@@ -285,6 +468,29 @@ function centerPill(i){
 
 function paint(i){
   syncSlots();
+  if(eggOpen&&eggUnlocked){
+    eggPage=clamp(eggPage,0,EGG_PAGES.length-1);
+    if(isPhone()){
+      pl.innerHTML=renderEggSingle(eggPage);
+    }else{
+      const [a,b]=renderEggDesktop(eggPage);
+      pl.innerHTML=a;
+      pr.innerHTML=b;
+    }
+    pl.classList.remove("airy");
+    pr.classList.remove("airy");
+    bindEggControls();
+    $("where").textContent=`2026 · Segreta ${eggPage+1} di ${EGG_PAGES.length}`;
+    $("lan").style.left=$("lab").style.left="99.5%";
+    $("lab").textContent="2026";
+    edges(C.length-1);
+    $("prev").disabled=eggPage===0;
+    $("next").disabled=eggPage===EGG_PAGES.length-1;
+    document.querySelectorAll(".pills button").forEach(el=>el.setAttribute("aria-current","false"));
+    return;
+  }
+
+  eggOpen=false;
   if(isPhone()){
     pl.innerHTML=htmlSingle(i);
   }else{
@@ -302,20 +508,23 @@ function paint(i){
   $("next").disabled=i===C.length-1;
   document.querySelectorAll(".pills button").forEach((el,j)=>el.setAttribute("aria-current",j===i));
   centerPill(i);
-  try{history.replaceState(null,"","#c"+(i+1))}catch(e){}
 }
 
-async function go(i){
-  if(busy||i<0||i>=C.length||i===cur)return;
-  const dir=i>cur?"next":"prev",f=dir==="next";
-  if(reduce||!pl.animate){sfx(dir);paint(i);return}
-  busy=true;sfx(dir);
+async function animateTurn(dir,renderFn){
+  const f=dir==="next";
+  if(reduce||!pl.animate){
+    sfx(dir);
+    renderFn();
+    return;
+  }
+  busy=true;
+  sfx(dir);
   if(isPhone()){
     await book.animate([
       {transform:"translateX(0)",opacity:1},
       {transform:`translateX(${f?-22:22}px)`,opacity:.15}
     ],{duration:210,easing:"ease-in",fill:"forwards"}).finished;
-    paint(i);
+    renderFn();
     if(window.scrollY>book.offsetTop){
       window.scrollTo({top:Math.max(0,book.offsetTop-12),behavior:"smooth"});
     }
@@ -330,7 +539,7 @@ async function go(i){
       {transform:"rotateY(0)",opacity:1,filter:"brightness(1)"},
       {transform:`rotateY(${f?-78:78}deg)`,opacity:.15,filter:"brightness(.7)"}
     ],{duration:340,easing:"ease-in",fill:"forwards"}).finished;
-    paint(i);
+    renderFn();
     (f?pl:pr).animate([
       {transform:`rotateY(${f?72:-72}deg)`,opacity:.2},
       {transform:"rotateY(0)",opacity:1}
@@ -338,6 +547,46 @@ async function go(i){
     out.getAnimations().forEach(a=>a.cancel());
   }
   busy=false;
+}
+
+async function openEgg2026(pageIdx=0){
+  if(busy)return;
+  eggUnlocked=true;
+  eggOpen=true;
+  eggPage=clamp(pageIdx,0,EGG_PAGES.length-1);
+  await animateTurn("next",()=>paint(cur));
+}
+
+async function goEgg(targetPage){
+  if(busy||!eggUnlocked||!eggOpen)return;
+  const nextIdx=clamp(targetPage,0,EGG_PAGES.length-1);
+  if(nextIdx===eggPage)return;
+  const dir=nextIdx>eggPage?"next":"prev";
+  await animateTurn(dir,()=>{
+    eggPage=nextIdx;
+    paint(cur);
+  });
+}
+
+async function go(i){
+  if(busy)return;
+  if(eggOpen){
+    if(!eggUnlocked)return;
+    const delta=i>cur?1:-1;
+    const nextEgg=eggPage+delta;
+    if(nextEgg>=0&&nextEgg<EGG_PAGES.length){
+      await goEgg(nextEgg);
+      return;
+    }
+    if(delta<0){
+      eggOpen=false;
+      await animateTurn("prev",()=>paint(cur));
+    }
+    return;
+  }
+  if(i<0||i>=C.length||i===cur)return;
+  const dir=i>cur?"next":"prev";
+  await animateTurn(dir,()=>paint(i));
 }
 
 /* Suoni: avanti = browse.ogg, indietro = browse2.ogg */
@@ -362,25 +611,71 @@ function sfx(dir="next"){if(muted)return;
 $("mute").onclick=e=>{muted=!muted;e.target.textContent=muted?"Suono: spento":"Suono: attivo";e.target.setAttribute("aria-pressed",muted)};
 $("prev").onclick=()=>go(cur-1);$("next").onclick=()=>go(cur+1);
 $("pills").innerHTML=C.map((c,i)=>`<button data-i="${i}" style="--c:${COL[c.g]}" title="${c.t}">${i+1}. ${c.p}</button>`).join("");
-$("pills").onclick=e=>{const b=e.target.closest("button");if(b)go(+b.dataset.i)};
+$("pills").onclick=e=>{const b=e.target.closest("button");if(b){eggOpen=false;go(+b.dataset.i)}};
 addEventListener("keydown",e=>{if(e.key==="ArrowRight")go(cur+1);else if(e.key==="ArrowLeft")go(cur-1)});
 
-/* Gesture swipe orizzontale solo su telefono */
-let tx=0,ty=0;
+/* Gesture swipe/drag orizzontale solo quando non c'è testo selezionato */
+let tx=0,ty=0,dragging=false;
+const hasTextSelection=()=>{
+  if(!window.getSelection)return false;
+  const s=window.getSelection();
+  return !!(s&&!s.isCollapsed&&String(s).trim().length>0);
+};
+const resetDrag=()=>{
+  tx=0;ty=0;dragging=false;
+  book.classList.remove("dragging");
+};
+const dragStart=(x,y,target)=>{
+  if(busy||target.closest("button,a,textarea,input"))return;
+  if(hasTextSelection())return;
+  tx=x;ty=y;dragging=true;
+};
+const dragMove=(x,y)=>{
+  if(!dragging)return;
+  if(hasTextSelection()){resetDrag();return}
+  const dx=x-tx,dy=y-ty;
+  if(Math.abs(dx)>18&&Math.abs(dx)>Math.abs(dy)*1.3){
+    book.classList.add("dragging");
+  }
+};
+const dragEnd=(x,y)=>{
+  if(!dragging)return;
+  if(hasTextSelection()){resetDrag();return}
+  const dx=x-tx,dy=y-ty;
+  resetDrag();
+  const minDist=isPhone()?52:70;
+  if(Math.abs(dx)>minDist&&Math.abs(dx)>Math.abs(dy)*1.4){
+    go(dx<0?cur+1:cur-1);
+  }
+};
+
 $("stage").addEventListener("touchstart",e=>{
-  if(!isPhone()||e.touches.length!==1)return;
-  tx=e.touches[0].clientX;ty=e.touches[0].clientY;
+  if(e.touches.length!==1)return;
+  dragStart(e.touches[0].clientX,e.touches[0].clientY,e.target);
+},{passive:true});
+$("stage").addEventListener("touchmove",e=>{
+  if(e.touches.length!==1)return;
+  dragMove(e.touches[0].clientX,e.touches[0].clientY);
 },{passive:true});
 $("stage").addEventListener("touchend",e=>{
-  if(!isPhone()||!tx||e.changedTouches.length!==1)return;
-  const dx=e.changedTouches[0].clientX-tx,dy=e.changedTouches[0].clientY-ty;
-  tx=0;ty=0;
-  if(Math.abs(dx)>52&&Math.abs(dx)>Math.abs(dy)*1.4){go(dx<0?cur+1:cur-1)}
+  if(e.changedTouches.length!==1)return;
+  dragEnd(e.changedTouches[0].clientX,e.changedTouches[0].clientY);
 },{passive:true});
+
+$("stage").addEventListener("mousedown",e=>{
+  if(e.button!==0)return;
+  dragStart(e.clientX,e.clientY,e.target);
+});
+addEventListener("mousemove",e=>dragMove(e.clientX,e.clientY));
+addEventListener("mouseup",e=>dragEnd(e.clientX,e.clientY));
 
 mobileMq.addEventListener("change",()=>paint(cur));
 
-const m=/^#c(\d+)$/.exec(location.hash);paint(m&&C[m[1]-1]?m[1]-1:0);
+/* Ogni refresh riparte sempre da zero senza leggere hash o storage */
+if(location.hash){
+  try{history.replaceState(null,"",location.pathname+location.search)}catch(e){}
+}
+paint(0);
 </script>
 </body>
 </html>
